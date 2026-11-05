@@ -1,0 +1,445 @@
+/* ============================================================
+   ГЛАВНАЯ — Figma «Новая главная» (10098:71929)
+   Первый экран с градиентом и видео → кейсы (витрины .show,
+   стили в showcase.css) → Mantle → футер.
+   Всё тянется в края окна: поля --page-edge (24, на телефоне 12).
+   ============================================================ */
+
+/* Главная — во всю ширину окна, без ограничения 1440 */
+.home .page { max-width: none; }
+
+/* ============================================================
+   ПЕРВЫЙ ЭКРАН
+   86 % высоты окна: снизу видно начало первого кейса — понятно,
+   что дальше есть что листать. Парящее меню стоит поверх низа экрана,
+   поэтому снизу отступ под него.
+   ============================================================ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;   /* градиент шире экрана — без горизонтальной прокрутки; низ не режем */
+  min-height: max(560px, var(--hero-share));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+  padding: var(--space-24) var(--page-edge) calc(var(--space-24) * 2 + 62px);
+  text-align: center;
+}
+
+/* Градиент: исходник из Figma (gradient-3840x2160), снизу маска уводит его
+   в фон страницы — резкого края нет. Картинка чуть шире экрана, как в макете */
+.hero__bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -1.6%;
+  right: -1.6%;
+  bottom: -4.7%;
+  /* кадр как в Figma (10107:63702): картинка 103,9 × 118,5 % слоя, видна нижняя часть */
+  background: url("../assets/cards/hero-gradient.jpg") 44.6% 98.7% / 103.9% 118.53% no-repeat;
+  background-image: image-set(
+    url("../assets/cards/hero-gradient.avif") type("image/avif"),
+    url("../assets/cards/hero-gradient.jpg") type("image/jpeg"));
+  filter: var(--hero-grad-filter);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  pointer-events: none;
+  transform-origin: 50% 40%;
+  animation: hero-wave var(--hero-wave-time) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Волна медленно дышит: смещается и чуть растёт. Запас по краям даёт scale,
+   поэтому края картинки в кадр не попадают */
+@keyframes hero-wave {
+  0%   { transform: scale(1.09) translate(-2.8%, 1.1%) rotate(-1.7deg); }
+  50%  { transform: scale(1.16) translate(1.7%, -2.3%) rotate(1.1deg); }
+  100% { transform: scale(1.11) translate(3.4%, 1.7%) rotate(-.6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg { animation: none; }
+}
+
+.hero__text {
+  width: min(760px, 100%);   /* в макете 705, но Golos шире Google Sans; перенос строки — <br> как в макете */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+}
+
+.hero__title { display: flex; flex-direction: column; }
+
+/* Подзаголовок: строки ровной длины без ручных переносов */
+.hero__sub { text-wrap: balance; }
+
+.hero__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  white-space: nowrap;
+}
+
+.hero__logo {
+  width: 40px;
+  height: auto;
+}
+
+/* Видео: «пилюля» 320×220 по центру свободного места. Пока ролика нет — фото (poster) */
+.hero__media {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.video--pill {
+  width: 320px;
+  max-width: 100%;
+  aspect-ratio: 320 / 220;
+  border-radius: var(--radius-round);
+  background: var(--light-100);
+}
+
+.video--pill .video__el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Пока ролика нет — подпись, какой файл положить */
+.video--pill.is-empty::before,
+.mantle__video.is-empty::before {
+  content: attr(data-file) "\A" attr(data-size);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  white-space: pre;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--dark-50);
+  pointer-events: none;
+}
+
+/* ============================================================
+   КЕЙСЫ
+   ============================================================ */
+.cases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: 0 var(--page-edge) var(--page-edge);
+}
+
+.cases__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+
+/* ============================================================
+   MANTLE: видео концепта на ткани + логотипы Claude и Higgsfield
+   Карточка пропорциональна макету 1392×678, всё внутри — в процентах.
+   ============================================================ */
+.mantle {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 1392 / 678;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+}
+
+.mantle__head {
+  position: absolute;
+  z-index: 3;
+  top: var(--space-32);
+  left: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.mantle__marks {
+  display: flex;
+  gap: var(--space-8);
+}
+
+/* Логотип в квадратике 24×24 — PNG 4x из Figma вместе с подложкой и скруглением */
+.mark {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* Ткань: слой из Figma «image» (y 135, повёрнут на 172.44° и отражён) */
+.mantle__fabric {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: calc(135 / 678 * 100%);
+  bottom: 0;
+  overflow: hidden;
+}
+
+.mantle__fabric-in {
+  position: absolute;
+  left: calc(-327 / 1392 * 100%);
+  top: calc(-14 / 543 * 100%);
+  width: calc(1795.56 / 1392 * 100%);
+  height: calc(1162.23 / 543 * 100%);
+  display: grid;
+  place-items: center;
+}
+
+.mantle__fabric-in picture { display: contents; }
+
+.mantle__fabric-in img {
+  width: calc(1685.43 / 1795.56 * 100%);
+  height: calc(948.86 / 1162.23 * 100%);
+  object-fit: cover;
+  transform: rotate(172.44deg) scaleY(-1);
+}
+
+.mantle__screen {
+  position: absolute;
+  z-index: 2;
+  left: calc(256 / 1392 * 100%);
+  top: calc(64 / 678 * 100%);
+  width: calc(880 / 1392 * 100%);
+  aspect-ratio: 880 / 550;
+  box-shadow: 0 0 0 1px var(--hairline), var(--shadow-2-mini);   /* едва заметная рамка — граница видна на белом */
+}
+
+.mantle__video {
+  height: 100%;
+  border-radius: 0;
+  background: var(--light-100);
+}
+
+.mantle__video .video__el { width: 100%; height: 100%; object-fit: cover; }
+
+/* ============================================================
+   ОПЫТ РАБОТЫ: заголовок слева, карточки справа.
+   Сетка та же, что у .cases__row: карточки стоят ровно под правым кейсом
+   ============================================================ */
+.exp {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-16);
+  padding: var(--space-24) var(--page-edge);
+}
+
+.exp__title { padding-block: var(--space-32); }
+
+.exp__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.exp__card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-24);
+  padding: var(--space-32) var(--space-24) var(--space-32) var(--space-32);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+}
+
+.exp__head {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: var(--exp-side);
+}
+
+.exp__company { white-space: nowrap; }
+
+.exp__period {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.exp__dates { color: var(--dark-60); }
+
+.exp__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.exp__body ul {
+  margin: 0;
+  padding-left: var(--exp-indent);
+  list-style: disc;
+}
+
+/* ============================================================
+   ФУТЕР
+   ============================================================ */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-8) var(--space-24);
+  padding: var(--space-24) var(--page-edge);
+}
+
+.footer__who {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.footer__mail {
+  color: var(--dark-60);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.footer__mail:hover { color: var(--dark-100); }
+
+.footer__note { color: var(--dark-50); }
+
+/* ============================================================
+   ПЛАНШЕТ (< 1200): кейсы ипотеки и «Моего дома» — каждый на всю ширину.
+   В ряд по два при такой ширине айфон уже упирался бы в текст метрик.
+   ============================================================ */
+@media (max-width: 1199px) {
+  .cases__row { grid-template-columns: minmax(0, 1fr); }
+
+  /* Опыт работы — как кейсы: заголовок сверху, карточки на всю ширину */
+  .exp { grid-template-columns: minmax(0, 1fr); }
+  .exp__title { padding: 0; }
+}
+
+/* ============================================================
+   ТЕЛЕФОН И УЗКИЙ ПЛАНШЕТ (< 900)
+   ============================================================ */
+@media (max-width: 899px) {
+  .home { --page-edge: var(--page-edge-m); }
+
+  .hero__title {
+    font-size: var(--fs-sub-xl);
+    line-height: var(--lh-sub-xl);
+    letter-spacing: 0;
+  }
+
+  .hero__logo { width: 24px; }
+  .hero__brand { gap: var(--space-4); }
+
+  .hero__sub {
+    font-size: var(--fs-s);
+    line-height: var(--lh-s);
+  }
+
+  /* Телефон и узкий планшет: текст первого экрана — по левому краю (на десктопе по центру) */
+  .hero__text { align-items: flex-start; text-align: left; }
+  .hero__title { align-items: flex-start; }
+
+  .cases { gap: var(--space-12); }
+  .cases__row { gap: var(--space-12); }
+
+  /* Mantle: название сверху, видео на всю ширину, ткань под ним */
+  .mantle {
+    aspect-ratio: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    padding: var(--space-20) var(--space-20) var(--space-80);   /* снизу видна ткань */
+  }
+
+  .mantle__head { position: relative; top: auto; left: auto; }
+
+  .mantle__screen {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+
+  .mantle__fabric { top: 40%; }
+
+  .mantle__fabric-in {
+    left: -70%;
+    top: 30%;      /* ткань — в верхней половине повёрнутого слоя: опускаем, чтобы она легла под видео и ниже */
+    width: 240%;
+    height: 170%;
+  }
+
+  /* Опыт работы: внутри карточки всё в столбик */
+  .exp {
+    padding-top: var(--space-32);
+    padding-bottom: 0;
+  }
+
+  .exp__title {
+    font-size: var(--fs-sub-l);
+    line-height: var(--lh-sub-l);
+  }
+
+  .exp__list { gap: var(--space-12); }
+
+  .exp__card {
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-20);
+    border-radius: var(--radius-card);
+  }
+
+  .exp__head { width: 100%; gap: var(--space-8); }
+
+  .exp__company {
+    font-size: var(--fs-sub-l);
+    line-height: var(--lh-sub-l);
+  }
+
+  .exp__role {
+    font-size: var(--fs-s);
+    line-height: var(--lh-s);
+  }
+
+  .exp__dates {
+    font-size: var(--fs-xs);
+    line-height: var(--lh-xs);
+  }
+
+  .exp__body { flex: none; width: 100%; }
+
+  /* Футер тише: кегль 12. Снизу место под парящее меню */
+  .footer {
+    padding-bottom: calc(var(--space-24) * 2 + 62px);
+    font-size: var(--fs-xs);
+    line-height: var(--lh-xs);
+  }
+
+  .footer__mail {
+    font-size: var(--fs-xs);
+    line-height: var(--lh-xs);
+  }
+}
+
+/* ============================================================
+   СТРАНИЦА 404 — первый экран главной на всю высоту, текст по центру
+   ============================================================ */
+.notfound .hero {
+  min-height: 100svh;
+  justify-content: center;
+}

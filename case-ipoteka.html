@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Страхование ипотеки</title>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<!-- Превью ссылки в Telegram, VK, Slack. og:image и og:url — полными адресами, иначе мессенджеры не покажут картинку -->
+<meta name="description" content="Проектирую web и mobile app интерфейсы 5 лет. Сам провожу интервью с пользователями. В Сравни поднял локальную дизайн-систему с нуля и пересобрал старую с дизайн-командой. Работаю в Claude и Higgsfield">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Страхование ипотеки">
+<meta property="og:description" content="Проектирую web и mobile app интерфейсы 5 лет. Сам провожу интервью с пользователями. В Сравни поднял локальную дизайн-систему с нуля и пересобрал старую с дизайн-командой. Работаю в Claude и Higgsfield">
+<meta property="og:url" content="https://niknikolaev.ru/case-ipoteka.html">
+<meta property="og:image" content="https://niknikolaev.ru/assets/site-service/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/google-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/tokens.css?v=2026-11-05c">
+<link rel="stylesheet" href="css/base.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/components.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/showcase.css?v=2026-11-02h">
+<link rel="stylesheet" href="css/case.css?v=2026-11-02k">
+<!-- Yandex.Metrika counter (только на niknikolaev.ru и запасной копии *.github.io: локальные просмотры не попадают в статистику) -->
+<script type="text/javascript">
+  if (/(^|\.)niknikolaev\.ru$|\.github\.io$/.test(location.hostname)) {
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113790440', 'ym');
+
+    ym(113790440, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  }
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113790440" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body class="case">
+
+<!-- ================= Парящее меню (Figma 485:39357) ================= -->
+<nav class="floatbar" aria-label="Разделы сайта">
+    <div class="floatbar__group floatbar__group--burger">
+      <button class="btn btn--icon floatbar__burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Меню"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 4.16634C2.5 3.70611 2.8731 3.33301 3.33333 3.33301H16.6667C17.1269 3.33301 17.5 3.70611 17.5 4.16634C17.5 4.62658 17.1269 4.99967 16.6667 4.99967H3.33333C2.8731 4.99967 2.5 4.62657 2.5 4.16634Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 10.0003C2.5 9.54008 2.8731 9.16699 3.33333 9.16699H16.6667C17.1269 9.16699 17.5 9.54008 17.5 10.0003C17.5 10.4606 17.1269 10.8337 16.6667 10.8337H3.33333C2.8731 10.8337 2.5 10.4606 2.5 10.0003Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 15.8333C2.5 15.3731 2.8731 15 3.33333 15H16.6667C17.1269 15 17.5 15.3731 17.5 15.8333C17.5 16.2936 17.1269 16.6667 16.6667 16.6667H3.33333C2.8731 16.6667 2.5 16.2936 2.5 15.8333Z"/></svg></button>
+    </div>
+    <div class="floatbar__group floatbar__group--nav">
+      <a class="btn floatbar__back" href="index.html" data-back><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M17.7013 11.8159L17.7087 11.667V8.33366C17.7087 7.52824 17.0557 6.87533 16.2503 6.87533H10.2087V4.76513C10.2086 4.13171 9.72699 3.61099 9.10999 3.5485L8.98549 3.54199C8.71533 3.54199 8.45358 3.6312 8.24088 3.79427L8.15299 3.86914L2.79737 8.84233C2.47531 9.14133 2.29199 9.56083 2.29199 10.0003C2.29199 10.4398 2.47531 10.8593 2.79737 11.1583L8.15299 16.1315C8.37924 16.3417 8.67674 16.4587 8.98549 16.4587C9.66099 16.4586 10.2086 15.911 10.2087 15.2355V13.1253H16.2503C17.0055 13.1253 17.6267 12.5514 17.7013 11.8159Z"/></svg><span>Вернуться</span></a>
+    </div>
+    <span class="floatbar__sep" aria-hidden="true"></span>
+    <!-- component:floatbar-actions -->
+    <div class="floatbar__group floatbar__group--actions">
+          <a class="btn" href="resume/" target="_blank" rel="noopener" data-goal="resume"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11.7895 1.88721L11.6666 1.875H8.33328C7.98812 1.875 7.70829 2.15483 7.70829 2.5V8.95833H5.83329C5.59078 8.95833 5.36975 9.09842 5.26688 9.318C5.16403 9.53767 5.1979 9.79742 5.35315 9.98375L9.51986 14.9837C9.63853 15.1261 9.81453 15.2083 9.99994 15.2083C10.1854 15.2083 10.3614 15.1261 10.4801 14.9837L14.6468 9.98375C14.802 9.79742 14.8351 9.53767 14.7322 9.318C14.6293 9.09858 14.409 8.95833 14.1666 8.95833H12.2916V2.5C12.2916 2.33424 12.2257 2.17532 12.1085 2.05811C12.0207 1.97029 11.9095 1.91127 11.7895 1.88721Z"/><path d="M15.6254 16.458C16.0856 16.458 16.4587 16.8311 16.4587 17.2913C16.4587 17.7516 16.0856 18.1247 15.6254 18.1247H4.37533C3.91509 18.1247 3.54199 17.7516 3.54199 17.2913C3.54199 16.8311 3.91509 16.458 4.37533 16.458H15.6254Z"/></svg><span>Резюме</span></a>
+          <div class="tg" data-tg>
+            <button class="btn btn--primary tg__btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="tg-menu"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.23741 9.42173C7.06923 7.31658 10.2912 5.92873 11.9033 5.25819C16.5063 3.34367 17.4627 3.0111 18.0861 3.00012C18.2232 2.9977 18.5298 3.03168 18.7284 3.19282C18.8961 3.32888 18.9422 3.51268 18.9643 3.64168C18.9864 3.77068 19.0139 4.06455 18.992 4.29417C18.7426 6.915 17.6633 13.2751 17.1142 16.2105C16.8818 17.4525 16.4244 17.869 15.9815 17.9097C15.0189 17.9983 14.288 17.2736 13.3558 16.6625C11.897 15.7063 11.0729 15.111 9.65691 14.1779C8.02048 13.0995 9.08131 12.5068 10.0139 11.5382C10.258 11.2847 14.4988 7.42729 14.5809 7.07736C14.5912 7.0336 14.6007 6.87046 14.5038 6.78432C14.4069 6.69818 14.2639 6.72764 14.1606 6.75107C14.0143 6.78427 11.6839 8.32459 7.16938 11.372C6.5079 11.8263 5.90875 12.0476 5.37193 12.036C4.78013 12.0232 3.64175 11.7014 2.79548 11.4263C1.75749 11.0889 0.932524 10.9105 1.00436 10.3374C1.04178 10.039 1.45279 9.73374 2.23741 9.42173Z"/></svg><span>Telegram</span><svg class="btn__icon tg__chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.25 7.5L10.25 13.5L16.25 7.5"/></svg></button>
+            <div class="tg__menu" id="tg-menu" role="menu" aria-label="Telegram" hidden>
+              <button class="tg__item tg__copy" type="button" role="menuitem" data-tg-copy="Николаев Николай, Product Designer&#10;https://t.me/niknikstd">
+                <span class="tg__ico" aria-hidden="true"><svg viewBox="0 0 20 20"><g class="tg__link"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M13.174 9.326C11.8835 8.03547 9.81075 8.00327 8.48175 9.22942C8.14345 9.54142 7.61624 9.52025 7.30417 9.18192C6.9921 8.84367 7.01333 8.31646 7.35161 8.00438C9.33533 6.17428 12.4271 6.22197 14.3526 8.14745C16.3269 10.1218 16.3269 13.3229 14.3526 15.2973L11.964 17.6858C9.98958 19.6602 6.78851 19.6602 4.81412 17.6858C2.83973 15.7115 2.83973 12.5104 4.81412 10.536L5.20107 10.149C5.52652 9.82358 6.05415 9.82358 6.37959 10.1491C6.70502 10.4745 6.70502 11.0021 6.37958 11.3276L5.99263 11.7145C4.66913 13.038 4.66913 15.1838 5.99263 16.5073C7.31614 17.8308 9.462 17.8308 10.7855 16.5073L13.174 14.1188C14.4976 12.7953 14.4976 10.6495 13.174 9.326Z"/><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M14.0073 3.49263C12.6838 2.16913 10.538 2.16913 9.2145 3.49263L6.82597 5.88118C5.50246 7.20469 5.50246 9.3505 6.82597 10.674C8.11646 11.9645 10.1892 11.9968 11.5182 10.7706C11.8566 10.4586 12.3837 10.4798 12.6958 10.8181C13.0079 11.1563 12.9867 11.6835 12.6484 11.9956C10.6647 13.8258 7.57293 13.778 5.64746 11.8526C3.67307 9.87817 3.67307 6.67705 5.64746 4.70267L8.036 2.31412C10.0104 0.339737 13.2115 0.339737 15.1859 2.31412C17.1602 4.28851 17.1602 7.48962 15.1859 9.464L14.7989 9.85092C14.4735 10.1764 13.9458 10.1764 13.6204 9.85092C13.295 9.5255 13.295 8.99792 13.6204 8.67242L14.0073 8.28548C15.3309 6.96198 15.3309 4.81614 14.0073 3.49263Z"/></g><g class="tg__done"><circle class="tg__disc" cx="9.79" cy="9.79" r="8.96"/><path class="tg__tick" d="M6.46 9.79L8.96 12.29L13.13 7.29"/></g><g class="tg__fail"><circle class="tg__disc" cx="9.79" cy="9.79" r="8.96"/><path class="tg__bang" d="M9.79 5.6V10.6"/><circle class="tg__dot" cx="9.79" cy="13.7" r="1.05"/></g></svg></span>
+                <span class="tg__labels">
+                  <span class="tg__label tg__label--idle">Скопировать ссылку</span>
+                  <span class="tg__label tg__label--done" aria-hidden="true">Скопировано</span>
+                  <span class="tg__label tg__label--fail" aria-hidden="true">Не&nbsp;скопировалось</span>
+                </span>
+              </button>
+              <p class="tg__manual"><span>Скопируйте вручную: <span class="tg__url">t.me/niknikstd</span></span></p>
+              <a class="tg__item" href="https://t.me/niknikstd" target="_blank" rel="noopener" role="menuitem" data-goal="contact contact_open"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.23741 9.42173C7.06923 7.31658 10.2912 5.92873 11.9033 5.25819C16.5063 3.34367 17.4627 3.0111 18.0861 3.00012C18.2232 2.9977 18.5298 3.03168 18.7284 3.19282C18.8961 3.32888 18.9422 3.51268 18.9643 3.64168C18.9864 3.77068 19.0139 4.06455 18.992 4.29417C18.7426 6.915 17.6633 13.2751 17.1142 16.2105C16.8818 17.4525 16.4244 17.869 15.9815 17.9097C15.0189 17.9983 14.288 17.2736 13.3558 16.6625C11.897 15.7063 11.0729 15.111 9.65691 14.1779C8.02048 13.0995 9.08131 12.5068 10.0139 11.5382C10.258 11.2847 14.4988 7.42729 14.5809 7.07736C14.5912 7.0336 14.6007 6.87046 14.5038 6.78432C14.4069 6.69818 14.2639 6.72764 14.1606 6.75107C14.0143 6.78427 11.6839 8.32459 7.16938 11.372C6.5079 11.8263 5.90875 12.0476 5.37193 12.036C4.78013 12.0232 3.64175 11.7014 2.79548 11.4263C1.75749 11.0889 0.932524 10.9105 1.00436 10.3374C1.04178 10.039 1.45279 9.73374 2.23741 9.42173Z"/></svg><span>Перейти в&nbsp;профиль</span></a>
+              <span class="visually-hidden" aria-live="polite" data-tg-status></span>
+            </div>
+          </div>
+        </div>
+    <!-- /component:floatbar-actions -->
+
+    <!-- Меню на телефоне (Figma 517:39835): вырастает из бургера -->
+    <div class="menu-pop" id="site-menu" inert>
+      <ul class="menu-pop__links">
+        <li class="menu-pop__item" style="--i:0"><a class="menu-pop__link" href="index.html#cases">Кейсы</a></li>
+      </ul>
+      <div class="menu-pop__contact menu-pop__item" style="--i:1">
+        <p class="menu-pop__label t-xs">почта для&nbsp;связи</p>
+        <a class="menu-pop__mail t-small" href="mailto:niknikolaev112@gmail.com">niknikolaev112@gmail.com</a>
+      </div>
+    </div>
+</nav>
+
+<main class="page">
+
+  <!-- ================= Обложка ================= -->
+  <header class="cover">
+    <div class="show" style="--zone:380">
+      <div class="show__text">
+        <h1 class="show__title t-sub-xl">Страхование ипотеки</h1>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;1,5&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;оплату полиса ипотеки с&nbsp;защитой ремонта и&nbsp;мебели</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;9&nbsp;п.п.</p><p class="show__label t-small">Attach-rate страхования ремонта и&nbsp;мебели</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;2,54&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;авторизацию у&nbsp;клиентов продления</p></div></div>
+      </div>
+      <div class="show__media" style="--sw:1012;--sh:600;--pr:957">
+        <div class="show__stage">
+          <div class="show__item show__art" style="--x:63;--y:85;--w:591;--h:397;--mw:83%" aria-hidden="true"><picture><source srcset="assets/cards/shields-cover.avif" type="image/avif"><img src="assets/cards/shields-cover.png" alt="" decoding="async"></picture></div><div class="show__item show__phone" style="--x:405;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/ipoteka-check.avif" type="image/avif"><img src="assets/cards/ipoteka-check.png" alt="Проверка данных перед оплатой полиса ипотеки" decoding="async"></picture></div><div class="show__item show__phone" style="--x:697;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/ipoteka-cross.avif" type="image/avif"><img src="assets/cards/ipoteka-cross.png" alt="Предложение защитить ремонт и&nbsp;мебель" decoding="async"></picture></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= Тело кейса ================= -->
+  <div class="case-body">
+
+    <nav class="case-nav" aria-label="Разделы кейса">
+      <ul class="case-nav__list">
+            <li><a class="case-nav__link" href="#about" aria-current="true">О&nbsp;проекте</a></li>
+            <li><a class="case-nav__link" href="#problem">Проблематика</a></li>
+            <li><a class="case-nav__link" href="#cross">Кросс-продажа ремонта и&nbsp;мебели</a></li>
+            <li><a class="case-nav__link" href="#auth">Авторизация</a></li>
+            <li><a class="case-nav__link" href="#anketa">Анкета</a></li>
+            <li><a class="case-nav__link" href="#hints">Подсказки</a></li>
+            <li><a class="case-nav__link" href="#focus">Фокусный режим</a></li>
+            <li><a class="case-nav__link" href="#check">Проверка данных</a></li>
+            <li><a class="case-nav__link" href="#payment">Загрузка полиса и&nbsp;оплата</a></li>
+            <li><a class="case-nav__link" href="#success">Страница успеха</a></li>
+            <li><a class="case-nav__link" href="#ab">Результаты двух АБ тестов</a></li>
+      </ul>
+    </nav>
+
+    <div class="case-main">
+
+      <!-- 00 О проекте: что сделал и с кем -->
+      <section class="chapter" id="about">
+        <div class="block project-about">
+          <p class="project-about__lead t-h2">Спроектировал анкету и&nbsp;встроил в&nbsp;неё&nbsp;кросс-продажу защиты ремонта и&nbsp;мебели</p>
+          <div class="facts">
+          <div class="fact-pair"><p class="fact-pair__label t-small">Команда</p><p class="t-text">CPO, Product Owner, CRM Marketer, UX Research, Analytics, Developers</p></div>
+          <div class="fact-pair"><p class="fact-pair__label t-small">Скоуп</p><p class="t-text">Discovery, UX/UI, Prototyping, Delivery, UX Testing</p></div>
+          <div class="fact-pair"><p class="fact-pair__label t-small">Моя роль</p><p class="t-text">Product Designer</p></div>
+          <div class="fact-pair"><p class="fact-pair__label t-small">Год</p><p class="t-text">2025–2026</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 Проблематика -->
+      <section class="chapter" id="problem">
+        <div class="block">
+          <h2 class="t-h2">Каждый месяц 9&nbsp;% клиентов исправляли полис через&nbsp;поддержку уже&nbsp;после&nbsp;оплаты. А&nbsp;ремонт и&nbsp;мебель страховал 1&nbsp;из&nbsp;100</h2>
+          <div class="block__text block__text--narrow">
+            <p class="t-text">Человек берёт ипотеку, и&nbsp;банк требует застраховать квартиру. Он&nbsp;приходит на&nbsp;Сравни продлить полис, и&nbsp;анкета заполняется сама по&nbsp;прошлому заказу. Он&nbsp;пролистывает её&nbsp;и&nbsp;платит. А&nbsp;за&nbsp;год&nbsp;у&nbsp;него сменился паспорт или&nbsp;прописка. Ошибку он&nbsp;находит после&nbsp;оплаты и&nbsp;пишет в&nbsp;поддержку</p>
+            <p class="t-text">Этот&nbsp;же&nbsp;человек думает, что&nbsp;застраховал квартиру целиком. Так&nbsp;считали 35&nbsp;% опрошенных. На&nbsp;деле полис покрывает стены, а&nbsp;выплату получит банк. Если&nbsp;соседи зальют квартиру, ремонт он&nbsp;оплатит&nbsp;сам. Доп.&nbsp;продукт мы&nbsp;продавали отдельным полисом, но&nbsp;предлагали его&nbsp;уже&nbsp;после&nbsp;оплаты</p>
+            <p class="t-text">Мне&nbsp;нужно было понять, где&nbsp;и&nbsp;почему клиенты ошибаются в&nbsp;анкете, и&nbsp;найти решения, которые помогут оформить полис без&nbsp;ошибок и&nbsp;покажут, что&nbsp;ремонт и&nbsp;мебель тоже&nbsp;можно защитить, не&nbsp;уронив CR в&nbsp;оформление полиса</p>
+          </div>
+          <div class="facts facts--metrics">
+            <div class="fact-pair"><p class="fact-pair__label fact-pair__label--soft t-small">Целевая метрика</p><p class="t-text">CR в&nbsp;оформление полиса</p></div>
+            <div class="fact-pair"><p class="fact-pair__label fact-pair__label--soft t-small">Вторичная метрика</p><p class="t-text">Attach-rate страхования ремонта и&nbsp;мебели</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Кросс-продажа ремонта и мебели -->
+      <section class="chapter" id="cross">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Встроил кросс-продажу ремонта и&nbsp;мебели в&nbsp;каталог страхования ипотеки</h2>
+            <p class="t-text">Страховка ипотеки не&nbsp;защищает ремонт и&nbsp;мебель. Их&nbsp;нужно страховать отдельным полисом</p>
+            <div class="stat-cards stat-cards--2"><div class="stat-card"><p class="stat-card__value">+&nbsp;1,5&nbsp;п.п.</p><p class="stat-card__label t-text">CR в&nbsp;оплату полиса ипотеки с&nbsp;кроссом</p></div><div class="stat-card"><p class="stat-card__value">+&nbsp;9&nbsp;п.п.</p><p class="stat-card__label t-text">Attach-rate страхования ремонта и&nbsp;мебели</p></div></div>
+          </div>
+          <figure class="figure">
+            <div class="plate" style="--pw:848;--ph:570"><div class="slot slot--phone" style="--x:47;--y:48;--w:230;--h:474" data-file="cross-1.png" data-size="460×948"><img src="assets/case-ipoteka/cross-1.png" alt="Каталог страхования ипотеки, шаг 1" loading="lazy"></div><div class="slot slot--phone" style="--x:309;--y:48;--w:230;--h:474" data-file="cross-2.png" data-size="460×948"><img src="assets/case-ipoteka/cross-2.png" alt="Каталог страхования ипотеки, шаг 2" loading="lazy"></div><div class="slot slot--phone" style="--x:571;--y:48;--w:230;--h:474" data-file="cross-3.png" data-size="460×948"><img src="assets/case-ipoteka/cross-3.png" alt="Каталог страхования ипотеки, шаг 3" loading="lazy"></div><svg class="connector" style="--x:255.1;--y:278.8;--w:58;--h:24" aria-hidden="true" focusable="false" viewBox="0 0 58 24" fill="none"><path d="M0.000650883 18.2213C0.000650883 21.1668 2.38847 23.5546 5.33398 23.5546C8.2795 23.5546 10.6673 21.1668 10.6673 18.2213C10.6673 15.2758 8.2795 12.888 5.33398 12.888C2.38847 12.888 0.000650883 15.2758 0.000650883 18.2213ZM56.9691 8.07136C57.3597 7.68084 57.3597 7.04768 56.9691 6.65715L50.6052 0.29319C50.2147 -0.0973344 49.5815 -0.0973344 49.191 0.29319C48.8004 0.683714 48.8004 1.31688 49.191 1.7074L54.8478 7.36426L49.191 13.0211C48.8004 13.4116 48.8004 14.0448 49.191 14.4353C49.5815 14.8259 50.2147 14.8259 50.6052 14.4353L56.9691 8.07136ZM5.33398 18.2213V19.2213H30.6253V18.2213V17.2213H5.33398V18.2213ZM34.6253 14.2213H35.6253V11.3643H34.6253H33.6253V14.2213H34.6253ZM38.6253 7.36426V8.36426H56.262V7.36426V6.36426H38.6253V7.36426ZM34.6253 11.3643H35.6253C35.6253 9.70741 36.9685 8.36426 38.6253 8.36426V7.36426V6.36426C35.8639 6.36426 33.6253 8.60284 33.6253 11.3643H34.6253ZM30.6253 18.2213V19.2213C33.3867 19.2213 35.6253 16.9827 35.6253 14.2213H34.6253H33.6253C33.6253 15.8781 32.2822 17.2213 30.6253 17.2213V18.2213Z" fill="currentColor"/></svg><svg class="connector" style="--x:517.1;--y:278.8;--w:55;--h:168" aria-hidden="true" focusable="false" viewBox="0 0 55 168" fill="none"><path d="M0.000650883 162.154C0.000650883 165.1 2.38847 167.488 5.33398 167.488C8.2795 167.488 10.6673 165.1 10.6673 162.154C10.6673 159.209 8.2795 156.821 5.33398 156.821C2.38847 156.821 0.000650883 159.209 0.000650883 162.154ZM53.7346 8.07136C54.1251 7.68084 54.1251 7.04768 53.7346 6.65715L47.3707 0.29319C46.9801 -0.0973344 46.347 -0.0973344 45.9564 0.29319C45.5659 0.683714 45.5659 1.31688 45.9564 1.7074L51.6133 7.36426L45.9564 13.0211C45.5659 13.4116 45.5659 14.0448 45.9564 14.4353C46.347 14.8259 46.9801 14.8259 47.3707 14.4353L53.7346 8.07136ZM5.33398 162.154V163.154H33.6291V162.154V161.154H5.33398V162.154ZM37.6291 158.154H38.6291V11.3643H37.6291H36.6291V158.154H37.6291ZM41.6291 7.36426V8.36426H53.0275V7.36426V6.36426H41.6291V7.36426ZM37.6291 11.3643H38.6291C38.6291 9.70741 39.9722 8.36426 41.6291 8.36426V7.36426V6.36426C38.8676 6.36426 36.6291 8.60284 36.6291 11.3643H37.6291ZM33.6291 162.154V163.154C36.3905 163.154 38.6291 160.916 38.6291 158.154H37.6291H36.6291C36.6291 159.811 35.2859 161.154 33.6291 161.154V162.154Z" fill="currentColor"/></svg></div>
+            <figcaption class="cap">Каталог страхования ипотеки</figcaption>
+          </figure>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Показал рекламную модалку тем, кто&nbsp;не&nbsp;взял защиту. CR в&nbsp;оплату ипотеки не&nbsp;просел, а&nbsp;защиту стали брать чаще</h2>
+            <p class="t-text">Модалка появляется, если&nbsp;клиент нажал «Далее», не&nbsp;выбрав защиту. Главная JTBD клиента на&nbsp;этом шаге в&nbsp;том, чтобы&nbsp;банк принял полис, поэтому оффер начинается с&nbsp;банка и&nbsp;только потом говорит о&nbsp;ремонте и&nbsp;мебели</p>
+          </div>
+          <figure class="figure">
+            <div class="plate" style="--pw:848;--ph:719"><div class="slot slot--phone" style="--x:102;--y:48;--w:302;--h:622" data-file="modal-1.png" data-size="604×1246"><img src="assets/case-ipoteka/modal-1.png" alt="Шаг без выбранной защиты" loading="lazy"></div><div class="slot slot--phone" style="--x:444;--y:48;--w:302;--h:622" data-file="modal-2.png" data-size="604×1246"><img src="assets/case-ipoteka/modal-2.png" alt="Рекламная модалка защиты ремонта и мебели" loading="lazy"></div><svg class="connector" style="--x:365.4;--y:353.3;--w:80;--h:193" aria-hidden="true" focusable="false" viewBox="0 0 80 193" fill="none"><path d="M0.000650883 187.554C0.000650883 190.5 2.38847 192.887 5.33398 192.887C8.2795 192.887 10.6673 190.5 10.6673 187.554C10.6673 184.609 8.2795 182.221 5.33398 182.221C2.38847 182.221 0.000650883 184.609 0.000650883 187.554ZM78.7276 8.07136C79.1181 7.68084 79.1181 7.04768 78.7276 6.65715L72.3637 0.29319C71.9731 -0.0973344 71.34 -0.0973344 70.9494 0.29319C70.5589 0.683714 70.5589 1.31688 70.9494 1.7074L76.6063 7.36426L70.9494 13.0211C70.5589 13.4116 70.5589 14.0448 70.9494 14.4353C71.34 14.8259 71.9731 14.8259 72.3637 14.4353L78.7276 8.07136ZM5.33398 187.554V188.554H40.3408V187.554V186.554H5.33398V187.554ZM56.3408 171.554H57.3408V23.3642H56.3408H55.3408V171.554H56.3408ZM72.3408 7.36426V8.36426H78.0205V7.36426V6.36426H72.3408V7.36426ZM56.3408 23.3642H57.3408C57.3408 15.08 64.0565 8.36426 72.3408 8.36426V7.36426V6.36426C62.952 6.36426 55.3408 13.9754 55.3408 23.3642H56.3408ZM40.3408 187.554V188.554C49.7297 188.554 57.3408 180.943 57.3408 171.554H56.3408H55.3408C55.3408 179.838 48.6251 186.554 40.3408 186.554V187.554Z" fill="currentColor"/></svg></div>
+            <figcaption class="cap">Модалка для&nbsp;тех, кто не&nbsp;выбрал защиту</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 03 Авторизация -->
+      <section class="chapter" id="auth">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Изменил экран авторизации для&nbsp;клиентов продления. CR в&nbsp;авторизацию <span class="metric-up">+&nbsp;2,54&nbsp;п.п.</span></h2>
+          </div>
+          <div class="compare compare--loose">
+            <div class="segment" data-value="after" role="group" aria-label="Авторизация: стало и было">
+              <button class="segment__btn" type="button" data-value="after" aria-pressed="true"><span>Стало</span></button>
+              <button class="segment__btn" type="button" data-value="before" aria-pressed="false"><span>Было</span></button>
+            </div>
+            <div class="compare__panes">
+              <div class="compare__pane is-active" data-value="after"><figure class="figure">
+            <div class="plate" style="--pw:848;--ph:538"><div class="slot slot--phone" style="--x:43;--y:32;--w:230;--h:474" data-file="auth-after-1.png" data-size="460×948"><img src="assets/case-ipoteka/auth-after-1.png" alt="Авторизация, стало, шаг 1" loading="lazy"></div><div class="slot slot--phone" style="--x:309;--y:32;--w:230;--h:474" data-file="auth-after-2.png" data-size="460×948"><img src="assets/case-ipoteka/auth-after-2.png" alt="Авторизация, стало, шаг 2" loading="lazy"></div><div class="slot slot--phone" style="--x:575;--y:32;--w:230;--h:474" data-file="auth-after-3.png" data-size="460×948"><img src="assets/case-ipoteka/auth-after-3.png" alt="Авторизация, стало, шаг 3" loading="lazy"></div><svg class="connector" style="--x:242.9;--y:240.9;--w:67;--h:35" aria-hidden="true" focusable="false" viewBox="0 0 67 35" fill="none"><path d="M0.000650883 5.33301C0.000650883 8.27853 2.38847 10.6663 5.33398 10.6663C8.2795 10.6663 10.6673 8.27853 10.6673 5.33301C10.6673 2.38749 8.2795 -0.00032568 5.33398 -0.00032568C2.38847 -0.00032568 0.000650883 2.38749 0.000650883 5.33301ZM66.0995 28C66.49 27.6095 66.49 26.9763 66.0995 26.5858L59.7356 20.2218C59.345 19.8313 58.7119 19.8313 58.3213 20.2218C57.9308 20.6124 57.9308 21.2455 58.3213 21.636L63.9782 27.2929L58.3213 32.9498C57.9308 33.3403 57.9308 33.9734 58.3213 34.364C58.7119 34.7545 59.345 34.7545 59.7356 34.364L66.0995 28ZM5.33398 5.33301V6.33301H24.0121V5.33301V4.33301H5.33398V5.33301ZM45.972 27.2929V28.2929H65.3924V27.2929V26.2929H45.972V27.2929ZM34.992 16.313H33.992C33.992 22.9293 39.3556 28.2929 45.972 28.2929V27.2929V26.2929C40.4602 26.2929 35.992 21.8247 35.992 16.313H34.992ZM24.0121 5.33301V6.33301C29.5238 6.33301 33.992 10.8012 33.992 16.313H34.992H35.992C35.992 9.69661 30.6284 4.33301 24.0121 4.33301V5.33301Z" fill="currentColor"/></svg><svg class="connector" style="--x:508.8;--y:262.9;--w:67;--h:30" aria-hidden="true" focusable="false" viewBox="0 0 67 30" fill="none"><path d="M0.000650883 24.4954C0.000650883 27.4409 2.38847 29.8287 5.33398 29.8287C8.2795 29.8287 10.6673 27.4409 10.6673 24.4954C10.6673 21.5498 8.2795 19.162 5.33398 19.162C2.38847 19.162 0.000650883 21.5498 0.000650883 24.4954ZM66.0995 8.07136C66.49 7.68084 66.49 7.04768 66.0995 6.65715L59.7356 0.29319C59.345 -0.0973344 58.7119 -0.0973344 58.3213 0.29319C57.9308 0.683714 57.9308 1.31688 58.3213 1.7074L63.9782 7.36426L58.3213 13.0211C57.9308 13.4116 57.9308 14.0448 58.3213 14.4353C58.7119 14.8259 59.345 14.8259 59.7356 14.4353L66.0995 8.07136ZM5.33398 24.4954V25.4954H35.4284V24.4954V23.4954H5.33398V24.4954ZM52.5595 7.36426V8.36426H65.3924V7.36426V6.36426H52.5595V7.36426ZM43.994 15.9298H44.994C44.994 11.7515 48.3812 8.36426 52.5595 8.36426V7.36426V6.36426C47.2766 6.36426 42.994 10.6469 42.994 15.9298H43.994ZM35.4284 24.4954V25.4954C40.7113 25.4954 44.994 21.2127 44.994 15.9298H43.994H42.994C42.994 20.1082 39.6068 23.4954 35.4284 23.4954V24.4954Z" fill="currentColor"/></svg></div>
+            <figcaption class="cap">Флоу авторизации</figcaption>
+          </figure></div>
+              <div class="compare__pane" data-value="before"><figure class="figure">
+            <div class="plate plate--wide" style="--pw:848;--ph:538"><div class="slot" style="--x:0;--y:0;--w:848;--h:538" data-file="auth-before.png" data-size="1696×1076"><img src="assets/case-ipoteka/auth-before.png" alt="Авторизация, было" loading="lazy"></div></div>
+            <figcaption class="cap">Флоу авторизации</figcaption>
+          </figure></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Анкета -->
+      <section class="chapter" id="anketa">
+        <div class="block">
+          <h2 class="t-h2">Разбил анкету из&nbsp;26&nbsp;полей на&nbsp;четыре шага</h2>
+          <div class="compare compare--loose">
+            <div class="segment" data-value="mobile" role="group" aria-label="Анкета: мобайл и десктоп">
+              <button class="segment__btn" type="button" data-value="mobile" aria-pressed="true"><svg class="segment__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M13.7507 1.04199C15.0163 1.04199 16.0423 2.06801 16.0423 3.33366V16.667C16.0423 17.9327 15.0163 18.9587 13.7507 18.9587H6.25065C4.985 18.9587 3.95898 17.9327 3.95898 16.667V3.33366C3.95898 2.06801 4.985 1.04199 6.25065 1.04199H13.7507ZM10.0007 15.0003C9.5404 15.0003 9.16732 15.3734 9.16732 15.8337C9.16732 16.2939 9.5404 16.667 10.0007 16.667C10.4609 16.667 10.834 16.2939 10.834 15.8337C10.834 15.3734 10.4609 15.0003 10.0007 15.0003Z"/></svg><span>Мобайл</span></button>
+              <button class="segment__btn" type="button" data-value="desktop" aria-pressed="false"><svg class="segment__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M18.9577 15C18.9577 14.6548 18.6779 14.375 18.3327 14.375H17.7077H16.4577H3.54102H2.29102H1.66602C1.32083 14.375 1.04102 14.6548 1.04102 15V15.5558C1.04112 16.1365 1.39433 16.5857 1.80762 16.8612C2.22532 17.1396 2.76628 17.2917 3.33268 17.2917H16.666C17.2324 17.2917 17.7734 17.1396 18.191 16.8612C18.6044 16.5857 18.9575 16.1365 18.9577 15.5558V15Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.29102 13.333H17.7077V4.99967C17.7077 3.73402 16.6816 2.70801 15.416 2.70801H4.58268C3.31702 2.70801 2.29102 3.73402 2.29102 4.99967V13.333Z"/></svg><span>Десктоп</span></button>
+            </div>
+            <div class="compare__panes">
+              <div class="compare__pane is-active" data-value="mobile"><div class="plate plate--bare" style="--pw:848;--ph:1235"><div class="slot" style="--x:192;--y:32;--w:464;--h:1220" data-file="anketa-mobile.png" data-size="928×2440"><img src="assets/case-ipoteka/anketa-mobile.png" alt="Анкета на телефоне" loading="lazy"></div><div class="annot annot--right" style="--x:713;--y:236;--w:136;--len:89;--gap:15;--ly:11"><span class="annot__line" aria-hidden="true"></span><p class="annot__title">Добавил прогресс</p><p class="annot__text">Видно, сколько осталось до&nbsp;конца</p></div><div class="annot annot--left" style="--x:3;--y:414;--w:172;--len:87;--gap:0;--ly:11"><span class="annot__line" aria-hidden="true"></span><p class="annot__title">Добавил подсказки</p><p class="annot__text">На&nbsp;чувствительные поля</p></div><div class="annot annot--right" style="--x:713;--y:536;--w:136;--len:89;--gap:15;--ly:13"><span class="annot__line" aria-hidden="true"></span><p class="annot__title">Сменил лейаут</p><p class="annot__text">Вместо аккордеона на&nbsp;одной странице&nbsp;— один блок на&nbsp;экран</p></div><div class="annot annot--left" style="--x:3;--y:943;--w:172;--len:64;--gap:0;--ly:11"><span class="annot__line" aria-hidden="true"></span><p class="annot__title">Показал, какую дату нужно выбрать</p><p class="annot__text">Следующий день после окончания текущего полиса</p></div></div></div>
+              <div class="compare__pane" data-value="desktop"><div class="plate plate--window" style="--pw:848;--ph:718"><div class="slot" style="--x:0;--y:0;--w:848;--h:718" data-file="anketa-desktop.png" data-size="1696×1436"><img src="assets/case-ipoteka/anketa-desktop.png" alt="Анкета на десктопе" loading="lazy"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 Подсказки -->
+      <section class="chapter" id="hints">
+        <div class="block">
+          <h2 class="t-h2">Добавил 14&nbsp;подсказок на&nbsp;реальных экранах банков</h2>
+          <div class="pair">
+            <figure class="figure">
+            <div class="plate" style="--pw:416;--ph:460"><div class="slot slot--phone slot--cut" style="--x:57;--y:24;--w:302;--h:623;--vh:436" data-file="hint-year.png" data-size="604×1246"><img src="assets/case-ipoteka/hint-year.png" alt="Подсказка: год постройки дома" loading="lazy"></div></div>
+            <figcaption class="cap">Пример подсказки: год постройки дома</figcaption>
+          </figure>
+            <figure class="figure">
+            <div class="plate" style="--pw:416;--ph:460"><div class="slot slot--phone slot--cut" style="--x:57;--y:24;--w:302;--h:623;--vh:436" data-file="hint-debt.png" data-size="604×1246"><img src="assets/case-ipoteka/hint-debt.png" alt="Подсказка: сколько осталось выплатить" loading="lazy"></div></div>
+            <figcaption class="cap">Пример подсказки: сколько осталось выплатить</figcaption>
+          </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 Фокусный режим -->
+      <section class="chapter" id="focus">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Анкета сама переходит к&nbsp;следующему полю</h2>
+            <p class="t-text">Предыдущее поле остаётся на&nbsp;экране, поэтому видно и&nbsp;что уже заполнено, и&nbsp;что заполнять сейчас</p>
+          </div>
+          <figure class="figure">
+            <div class="video video--plate is-empty" data-file="focus.mp4" data-size="1440×1440">
+              <video class="video__el" muted loop playsinline preload="none" poster="assets/case-ipoteka/focus-poster.jpg" data-src="assets/case-ipoteka/focus.mp4" data-autoplay-in-view aria-label="Автопроброс фокуса между полями ввода"></video>
+              <button class="video__toggle" type="button" aria-label="Воспроизвести"></button>
+            </div>
+            <figcaption class="cap">Автопроброс фокуса между полями ввода</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 07 Проверка данных -->
+      <section class="chapter" id="check">
+        <div class="block">
+          <h2 class="t-h2">Добавил этап проверки данных перед оплатой</h2>
+          <div class="compare compare--loose">
+            <div class="segment" data-value="mobile" role="group" aria-label="Проверка данных: мобайл и десктоп">
+              <button class="segment__btn" type="button" data-value="mobile" aria-pressed="true"><svg class="segment__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M13.7507 1.04199C15.0163 1.04199 16.0423 2.06801 16.0423 3.33366V16.667C16.0423 17.9327 15.0163 18.9587 13.7507 18.9587H6.25065C4.985 18.9587 3.95898 17.9327 3.95898 16.667V3.33366C3.95898 2.06801 4.985 1.04199 6.25065 1.04199H13.7507ZM10.0007 15.0003C9.5404 15.0003 9.16732 15.3734 9.16732 15.8337C9.16732 16.2939 9.5404 16.667 10.0007 16.667C10.4609 16.667 10.834 16.2939 10.834 15.8337C10.834 15.3734 10.4609 15.0003 10.0007 15.0003Z"/></svg><span>Мобайл</span></button>
+              <button class="segment__btn" type="button" data-value="desktop" aria-pressed="false"><svg class="segment__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M18.9577 15C18.9577 14.6548 18.6779 14.375 18.3327 14.375H17.7077H16.4577H3.54102H2.29102H1.66602C1.32083 14.375 1.04102 14.6548 1.04102 15V15.5558C1.04112 16.1365 1.39433 16.5857 1.80762 16.8612C2.22532 17.1396 2.76628 17.2917 3.33268 17.2917H16.666C17.2324 17.2917 17.7734 17.1396 18.191 16.8612C18.6044 16.5857 18.9575 16.1365 18.9577 15.5558V15Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.29102 13.333H17.7077V4.99967C17.7077 3.73402 16.6816 2.70801 15.416 2.70801H4.58268C3.31702 2.70801 2.29102 3.73402 2.29102 4.99967V13.333Z"/></svg><span>Десктоп</span></button>
+            </div>
+            <div class="compare__panes">
+              <div class="compare__pane is-active" data-value="mobile"><div class="plate plate--bare" style="--pw:848;--ph:1355"><div class="slot slot--shadow" style="--x:204;--y:32;--w:440;--h:1283" data-file="check-mobile.png" data-size="880×2566"><img src="assets/case-ipoteka/check-mobile.png" alt="Проверка данных на телефоне" loading="lazy"></div></div></div>
+              <div class="compare__pane" data-value="desktop"><div class="plate plate--window" style="--pw:848;--ph:718"><div class="slot" style="--x:0;--y:0;--w:848;--h:718" data-file="check-desktop.png" data-size="1696×1436"><img src="assets/case-ipoteka/check-desktop.png" alt="Проверка данных на десктопе" loading="lazy"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 Загрузка полиса и оплата -->
+      <section class="chapter" id="payment">
+        <div class="block">
+          <h2 class="t-h2">Пока создаётся полис перед оплатой, предложил защиту ремонта и&nbsp;мебели</h2>
+          <figure class="figure">
+            <div class="video video--plate is-empty" data-file="payment.mp4" data-size="1440×1440">
+              <video class="video__el" muted loop playsinline preload="none" poster="assets/case-ipoteka/payment-poster.jpg" data-src="assets/case-ipoteka/payment.mp4" data-autoplay-in-view aria-label="Промо на экране ожидания перед оплатой"></video>
+              <button class="video__toggle" type="button" aria-label="Воспроизвести"></button>
+            </div>
+            <figcaption class="cap">Промо на&nbsp;экране ожидания перед оплатой</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 09 Страница успеха -->
+      <section class="chapter" id="success">
+        <div class="block">
+          <h2 class="t-h2">Ответил на&nbsp;странице успеха на&nbsp;вопросы, с&nbsp;которыми клиенты писали в&nbsp;поддержку</h2>
+          <figure class="figure">
+            <div class="plate" style="--pw:848;--ph:1046"><div class="slot" style="--x:84;--y:34;--w:338;--h:1010.5" data-file="success-1.png" data-size="676×2021"><img src="assets/case-ipoteka/success-1.png" alt="Страница успеха после оплаты" loading="lazy"></div><div class="slot slot--phone" style="--x:444;--y:40;--w:302;--h:623" data-file="success-2.png" data-size="604×1246"><img src="assets/case-ipoteka/success-2.png" alt="Страница успеха, ответы на вопросы" loading="lazy"></div><svg class="connector" style="--x:376.4;--y:320.5;--w:69;--h:38" aria-hidden="true" focusable="false" viewBox="0 0 69 38" fill="none"><path d="M0.000650883 5.33398C0.000650883 8.2795 2.38847 10.6673 5.33398 10.6673C8.2795 10.6673 10.6673 8.2795 10.6673 5.33398C10.6673 2.38847 8.2795 0.000650883 5.33398 0.000650883C2.38847 0.000650883 0.000650883 2.38847 0.000650883 5.33398ZM67.7428 30.4075C68.1333 30.017 68.1333 29.3838 67.7428 28.9933L61.3788 22.6293C60.9883 22.2388 60.3551 22.2388 59.9646 22.6293C59.5741 23.0198 59.5741 23.653 59.9646 24.0435L65.6215 29.7004L59.9646 35.3572C59.5741 35.7478 59.5741 36.3809 59.9646 36.7714C60.3551 37.162 60.9883 37.162 61.3788 36.7714L67.7428 30.4075ZM5.33398 5.33398V6.33398H40.1728V5.33398V4.33398H5.33398V5.33398ZM64.5392 29.7004V30.7004H67.0357V29.7004V28.7004H64.5392V29.7004ZM52.356 17.5172H51.356C51.356 24.7981 57.2583 30.7004 64.5392 30.7004V29.7004V28.7004C58.3629 28.7004 53.356 23.6935 53.356 17.5172H52.356ZM40.1728 5.33398V6.33398C46.3491 6.33398 51.356 11.3409 51.356 17.5172H52.356H53.356C53.356 10.2363 47.4537 4.33398 40.1728 4.33398V5.33398Z" fill="currentColor"/></svg></div>
+            <figcaption class="cap">Страница успеха после оплаты</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 10 Результаты двух АБ тестов -->
+      <section class="chapter" id="ab">
+        <div class="block">
+          <h2 class="t-h2">Результаты двух АБ тестов</h2>
+          <div class="stat-cards stat-cards--2"><div class="stat-card"><p class="stat-card__value">+&nbsp;1,5&nbsp;п.п.</p><p class="stat-card__label t-text">CR в&nbsp;оплату полиса ипотеки с&nbsp;защитой ремонта и&nbsp;мебели</p></div><div class="stat-card"><p class="stat-card__value">+&nbsp;9&nbsp;п.п.</p><p class="stat-card__label t-text">Attach-rate страхования ремонта и&nbsp;мебели</p></div><div class="stat-card"><p class="stat-card__value">+&nbsp;2,54&nbsp;п.п.</p><p class="stat-card__label t-text">CR в&nbsp;авторизацию у&nbsp;клиентов продления</p></div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Следующий кейс: витрина «Моего дома», как обложка кейса -->
+  <nav class="next-case" aria-label="Следующий кейс">
+    <a class="show" href="case-dom.html" style="--zone:380">
+      <div class="show__text">
+        <h2 class="show__title t-sub-xl">Хаб «Мой дом» Mobile&nbsp;App</h2>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;0,8&nbsp;п.п.</p><p class="show__label t-small">TR из&nbsp;подарочного полиса в&nbsp;платный</p></div><div class="show__stat"><p class="show__value t-sub-l">x&nbsp;3</p><p class="show__label t-small">Retention первой недели в&nbsp;раздел</p></div></div>
+        <span class="show__btn btn btn--primary">Посмотреть</span>
+      </div>
+      <div class="show__media" style="--sw:1012;--sh:600;--pr:957">
+        <div class="show__stage">
+          <div class="show__item show__art" style="--x:41;--y:128;--w:598;--h:345;--mw:85%;--cl:0.25%;--ct:-18.13%;--cw:113.76%;--ch:131.6%" aria-hidden="true"><picture><source srcset="assets/cards/sofa-cover.avif" type="image/avif"><img src="assets/cards/sofa-cover.png" alt="" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:403;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/dom-hub.avif" type="image/avif"><img src="assets/cards/dom-hub.png" alt="Хаб «Мой дом» с&nbsp;полной защитой квартиры" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:697;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/dom-price.avif" type="image/avif"><img src="assets/cards/dom-price.png" alt="Рыночная стоимость квартиры и&nbsp;сколько одобрят банки" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </div>
+    </a>
+  </nav>
+
+</main>
+
+<script src="js/analytics.js?v=2026-11-06a" defer></script>
+<script src="js/tg.js?v=2026-11-02h" defer></script>
+<script src="js/ui.js?v=2026-11-02g" defer></script>
+<script src="js/video.js?v=2026-11-06a" defer></script>
+<script src="js/case.js?v=2026-11-02g" defer></script>
+<script src="js/cursor.js?v=2026-11-02g" defer></script>
+<script src="js/menu.js?v=2026-11-02g" defer></script>
+</body>
+</html>

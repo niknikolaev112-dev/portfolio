@@ -1,0 +1,1279 @@
+/* ============================================================
+   КОМПОНЕНТЫ — карточки, скриншоты, списки, плитки
+   Портфолио — Николай Николаев
+   ============================================================ */
+
+/* --- Инфо-сетка 2×2 --- */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --- Карточка навигации по кейсу --- */
+.nav-card {
+  background: var(--light-100);
+  border-radius: var(--radius-nav);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-card__icon,
+.nav-card__chevron { width: 20px; height: 20px; flex: 0 0 20px; }
+
+.nav-card__chevron { margin-left: auto; }
+
+.nav-card:not(.nav-card--open) .nav-card__chevron { transform: rotate(0deg); }
+.nav-card--open .nav-card__chevron { transform: rotate(180deg); }
+
+.nav-card__label {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: var(--fs-upper);
+  line-height: var(--lh-upper);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-upper);
+  text-transform: uppercase;
+}
+
+.nav-card__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--dark-60);
+}
+
+.nav-card__list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-card__list li.is-active {
+  color: var(--dark-100);
+  font-weight: 500;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+  background: currentColor;
+  flex: 0 0 4px;
+}
+
+/* --- Скриншоты и картинки --- */
+.shot {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.shot__frame,
+.shot__plain,
+.shot__dark,
+.shot__tile {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  width: 100%;
+}
+
+.shot__frame {
+  background: var(--light-100);
+  border: 1px solid var(--dark-20);
+  box-shadow: var(--shadow-shot);
+}
+
+.shot__dark { background: #161616; }
+
+.shot__tile { background: var(--dm-card); }
+
+.shot img { width: 100%; height: auto; }
+
+.shot-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.chart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.chart img { max-width: 420px; width: 100%; height: auto; }
+
+/* --- Список инсайтов с разделителями --- */
+.findings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  border-top: 1px solid var(--dark-20);
+  padding-top: 16px;
+}
+
+.finding {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--dark-20);
+}
+
+.finding:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.finding__num { width: 54px; flex: 0 0 54px; }
+.finding__title { flex: 1 1 0; min-width: 0; }
+.finding__desc { flex: 1 1 0; min-width: 0; }
+
+/* --- Нумерованный список критериев (тёмная секция) --- */
+.criteria {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.criteria li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding-top: 16px;
+  border-top: 1px solid var(--dark-80);
+}
+
+.criteria__num { width: 64px; flex: 0 0 64px; text-align: center; font-weight: 500; }
+.criteria__name { flex: 1 1 0; min-width: 0; font-weight: 500; }
+.criteria__desc { flex: 1 1 0; min-width: 0; }
+
+/* --- Карточки --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.persona,
+.issue,
+.hypo {
+  background: var(--light-100);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.persona__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.persona__avatar {
+  width: 65px;
+  height: 80px;
+  flex: 0 0 65px;
+  overflow: hidden;
+}
+
+.persona__avatar img { width: 100%; height: 100%; object-fit: contain; }
+
+.persona__name {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.persona__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dot, var(--dark-50));
+  display: inline-block;
+}
+
+.persona__text {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  border: 1px solid var(--dark-20);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.issue__head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.issue__title {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.issue__quote {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.quote-line { font-style: italic; }
+
+.quote-author {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--dark-60);
+}
+
+.hypo__icon { width: 32px; height: 32px; }
+
+/* --- JTBD: аккордеон на нативном <details>, без js --- */
+.jtbd-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.jtbd {
+  background: var(--btn-secondary);
+  border-radius: var(--radius-card);
+  padding: var(--space-24);
+}
+
+.jtbd__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  cursor: pointer;
+  list-style: none;
+}
+
+.jtbd__head::-webkit-details-marker { display: none; }
+
+.jtbd__icon { width: 32px; height: 32px; flex: 0 0 32px; }
+.jtbd__text { flex: 1 1 0; min-width: 0; }
+
+.jtbd__chevron {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.jtbd[open] .jtbd__chevron { transform: rotate(180deg); }
+
+.jtbd__jobs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+  margin-top: var(--space-24);
+}
+
+.small-job {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.small-job__label { color: var(--dark-60); }
+
+/* --- Плитки с цифрами --- */
+.stat-cards {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.stat-cards--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stat-cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.stat-card {
+  background: var(--light-100);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.stat-card__value {
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 500;
+}
+
+.stat-card__label { color: var(--dark-50); }
+
+/* --- Нумерованные пункты в кружке --- */
+.numbered {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.numbered li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.numbered__badge {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border: 1px solid var(--dark-20);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ============================================================
+   ВИДЕО
+   Разметка:
+   <figure class="shot">
+     <div class="video video--tile">
+       <video class="video__el" playsinline muted loop autoplay
+              preload="metadata" poster="assets/case/xxx-poster.jpg"
+              data-autoplay-in-view>
+         <source src="assets/video/xxx.webm" type="video/webm">
+         <source src="assets/video/xxx.mp4"  type="video/mp4">
+       </video>
+       <button class="video__toggle" type="button" aria-label="Пауза"></button>
+     </div>
+     <figcaption class="t-small muted">Подпись</figcaption>
+   </figure>
+   ============================================================ */
+
+.video {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface-card);
+}
+
+.video--tile  { background: var(--dm-card); }
+.video--dark  { background: #161616; }
+.video--frame {
+  background: var(--surface-card);
+  border: 1px solid var(--dark-20);
+  box-shadow: var(--shadow-shot);
+}
+
+.video__el {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Соотношение сторон до загрузки метаданных — чтобы не прыгала вёрстка.
+   Задаётся инлайном: style="--ratio: 16/9" */
+.video[style*="--ratio"] .video__el { aspect-ratio: var(--ratio); object-fit: cover; }
+
+/* Кнопка play/pause: появляется по ховеру, всегда видна с клавиатуры */
+.video__toggle {
+  position: absolute;
+  right: var(--space-16);
+  bottom: var(--space-16);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgba(35, 35, 37, .6);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.video:hover .video__toggle,
+.video__toggle:focus-visible { opacity: 1; }
+
+.video__toggle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 12px;
+  height: 14px;
+  /* пауза: две полоски */
+  background: linear-gradient(90deg,
+    var(--light-100) 0 4px, transparent 4px 8px, var(--light-100) 8px 12px);
+}
+
+.video.is-paused .video__toggle { opacity: 1; }
+
+.video.is-paused .video__toggle::before {
+  /* play: треугольник */
+  background: var(--light-100);
+  clip-path: polygon(1px 0, 12px 7px, 1px 14px);
+}
+
+/* Квадратное видео вместо плашки со скриншотом (кейс ипотеки, 1440×1440).
+   Ролик грузится, только когда блок подъезжает к экрану. На медленной
+   сети и при «экономии трафика» видна обложка с кнопкой play —
+   ролик скачается, только если нажать. */
+.video--plate { aspect-ratio: 1; }
+
+.video--plate .video__el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* В ролике по краям впечатаны однопиксельные серые линии (артефакт
+     экспорта) — чуть увеличиваем кадр, плашка обрезает края */
+  transform: scale(1.005);
+}
+
+/* Пока нет ни обложки, ни ролика — заглушка с именем файла, как у слотов */
+.video--plate.is-empty::before {
+  content: attr(data-file) "\A" attr(data-size);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  white-space: pre;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--dark-60);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 9px, rgba(35, 35, 37, .035) 9px 10px),
+    var(--dark-06);
+  box-shadow: inset 0 0 0 1px var(--dark-30);
+  border-radius: inherit;
+}
+
+.video--plate .video__toggle { z-index: 2; }
+
+/* Ролик не загрузился — остаётся обложка, кнопка не нужна */
+.video.is-failed .video__toggle { display: none; }
+
+/* Полноширинная врезка на всю ширину экрана */
+.video--bleed {
+  border-radius: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* ============================================================
+   КНОПКИ, ТАБЫ, ТЕГИ  (UI Kit, node 190:15762)
+   ============================================================ */
+
+.btn {
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-16) var(--space-20);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: var(--fs-m);
+  line-height: var(--lh-m);
+  font-weight: var(--fw-medium);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+
+/* default — белая кнопка на светлом фоне */
+.btn {
+  background: var(--light-100);
+  color: var(--dark-100);
+}
+
+.btn:hover { background: var(--btn-secondary); }
+
+/* active / primary — тёмная заливка */
+.btn--primary,
+.btn[aria-pressed="true"] {
+  background: var(--dark-100);
+  color: var(--light-100);
+}
+
+.btn--primary:hover { background: var(--btn-primary-hover); }
+
+/* Иконка в кнопке: 20×20, цвет берёт у текста */
+.btn__icon { flex: 0 0 auto; width: 20px; height: 20px; }
+
+/* Группа табов: белая «капсула» с кнопками внутри */
+.tab-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--light-100);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.tab-group .btn { flex: 1 1 0; min-width: 0; }
+
+/* Тег — уже используется в карточках майндсетов */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--dark-20);
+  border-radius: var(--radius-pill);
+  padding: 6px var(--space-12);
+  background: var(--light-100);
+  font-size: var(--fs-s);
+  line-height: var(--lh-s);
+  color: var(--dark-100);
+}
+
+/* Пункт навигации кейса: состояния default / hover / active */
+.nav-card__list li {
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.nav-card__list a:hover,
+.nav-card__list li:hover { color: var(--dark-60); }
+
+.case-section--dark .nav-card__list a:hover,
+.case-section--dark .nav-card__list li:hover { color: var(--dark-50); }
+
+/* ============================================================
+   ПАРЯЩЕЕ МЕНЮ — единственное меню сайта, верхней шапки нет
+   Компонент Figma «menu» (485:39357): белая капсула, внутри кнопки
+   из компонента «button» (193:16226). Тень — стиль «shadow 2 (mini)».
+   ============================================================ */
+.floatbar {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-24);
+  z-index: 60;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4);
+  background: var(--light-100);
+  border-radius: var(--radius-round);
+  box-shadow: var(--shadow-2-mini);
+  white-space: nowrap;
+  max-width: calc(100% - 2 * var(--page-edge-m));
+}
+
+/* Все кнопки меню одной высоты — 54, капсула 62 в любом состоянии */
+.floatbar .btn { height: 54px; }
+
+.floatbar__group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.floatbar__sep {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 32px;
+  border-radius: 5px;
+  background: var(--dark-20);
+}
+
+/* ============================================================
+   КНОПКА TELEGRAM С МЕНЮ (Figma 10456:94213)
+   «Telegram ∨» раскрывает меню над кнопкой: «Скопировать ссылку» и
+   «Перейти в профиль». После копирования иконка ссылки плавно
+   превращается в зелёную галочку, текст — в «Скопировано»;
+   через 3 с меню закрывается само (пока курсор в меню — ждёт).
+   Не вышло скопировать — оранжевый «!» и ссылка текстом.
+   ============================================================ */
+.tg { position: relative; display: flex; }
+
+.tg__chev {
+  transform: rotate(0deg);
+  transition: transform var(--dur-menu-in) var(--ease-menu);
+}
+
+.tg__btn[aria-expanded="true"] { background: var(--btn-primary-hover); }
+.tg__btn[aria-expanded="true"] .tg__chev { transform: rotate(180deg); }
+
+/* Меню: белая плашка 219 px над кнопкой, по центру Telegram,
+   зазор 8 от капсулы (4 — поле капсулы) */
+.tg__menu {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + var(--space-4) + var(--space-8));
+  z-index: 2;
+  width: var(--tg-menu-w);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-16);
+  border-radius: var(--radius-menu);
+  background: var(--light-100);
+  box-shadow: var(--shadow-2-mini);
+  white-space: nowrap;
+  transform-origin: 50% 100%;
+
+  /* закрыто */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(calc(-50% + var(--tg-shift, 0px))) translateY(var(--space-6)) scale(.96);
+  transition:
+    opacity var(--dur-menu-out) linear,
+    transform var(--dur-menu-out) var(--ease-menu),
+    visibility 0s var(--dur-menu-out);
+}
+
+.tg__menu[hidden] { display: none; }
+
+/* Само закрылось после «Скопировано» — медленнее и мягче, чем по клику */
+.tg__menu.is-soft {
+  transition:
+    opacity 480ms linear,
+    transform 560ms var(--ease-menu),
+    visibility 0s 560ms;
+}
+
+.tg.is-open .tg__menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(calc(-50% + var(--tg-shift, 0px))) translateY(0) scale(1);
+  transition:
+    opacity 160ms linear,
+    transform var(--dur-menu-in) var(--ease-menu),
+    visibility 0s;
+}
+
+.tg__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-12) 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--fs-m);
+  line-height: var(--lh-m);
+  font-weight: var(--fw-medium);
+  color: var(--dark-100);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.tg__item:hover { color: var(--dark-60); }
+.tg__item:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; border-radius: var(--radius-xs); }
+.tg__item .btn__icon { color: var(--dark-100); }
+
+/* --- Иконка: ссылка → галочка (или «!») --- */
+.tg__ico { flex: 0 0 auto; width: 20px; height: 20px; }
+.tg__ico svg { display: block; width: 20px; height: 20px; overflow: visible; }
+
+.tg__link,
+.tg__done,
+.tg__fail { transform-box: view-box; transform-origin: 50% 50%; }
+
+.tg__link { transition: opacity 200ms linear, transform 320ms var(--ease-menu); }
+
+.tg__disc { transform-box: fill-box; transform-origin: 50% 50%; transform: scale(0); }
+.tg__done .tg__disc { fill: var(--metric-up); }
+.tg__fail .tg__disc { fill: var(--orange-100); }
+
+.tg__tick,
+.tg__bang {
+  fill: none;
+  stroke: var(--light-100);
+  stroke-width: 1.67;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+}
+
+.tg__dot { fill: var(--light-100); transform-box: fill-box; transform-origin: 50% 50%; transform: scale(0); }
+
+/* Состояние: скопировано / ошибка */
+.tg__copy.is-done .tg__link,
+.tg__copy.is-fail .tg__link { opacity: 0; transform: scale(.5) rotate(-45deg); }
+
+.tg__copy.is-done .tg__done .tg__disc,
+.tg__copy.is-fail .tg__fail .tg__disc { animation: tg-pop 420ms var(--ease-menu) 60ms both; }
+
+.tg__copy.is-done .tg__tick { animation: tg-draw 300ms ease-out 240ms both; }
+.tg__copy.is-fail .tg__bang { animation: tg-draw 220ms ease-out 240ms both; }
+.tg__copy.is-fail .tg__dot { animation: tg-pop 260ms var(--ease-menu) 380ms both; }
+
+@keyframes tg-pop {
+  0%   { transform: scale(0); }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+@keyframes tg-draw { to { stroke-dashoffset: 0; } }
+
+/* --- Подпись: три текста в одной ячейке, меняются сдвигом вверх --- */
+.tg__labels { display: grid; flex: 1 1 auto; min-width: 0; overflow: hidden; }
+
+.tg__label {
+  grid-area: 1 / 1;
+  transition: opacity 200ms linear, transform 320ms var(--ease-menu);
+}
+
+.tg__label--done { color: var(--metric-up); }
+.tg__label--fail { color: var(--orange-100); }
+
+.tg__label--done,
+.tg__label--fail { opacity: 0; transform: translateY(70%); }
+
+.tg__copy.is-done .tg__label--idle,
+.tg__copy.is-fail .tg__label--idle { opacity: 0; transform: translateY(-70%); }
+
+.tg__copy.is-done .tg__label--done,
+.tg__copy.is-fail .tg__label--fail { opacity: 1; transform: none; transition-delay: 60ms; }
+
+/* Ссылка текстом — только если скопировать не вышло: выезжает под пунктом */
+.tg__manual {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin: 0 0 0 calc(20px + var(--space-8));
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--dark-50);
+  white-space: normal;
+  opacity: 0;
+  transition: grid-template-rows var(--dur-menu-in) var(--ease-menu), opacity 200ms linear, margin var(--dur-menu-in) var(--ease-menu);
+}
+
+.tg__manual > * { min-height: 0; }
+.tg__menu.is-fail .tg__manual { grid-template-rows: 1fr; opacity: 1; margin-top: calc(var(--space-8) * -1); margin-bottom: var(--space-4); }
+.tg__manual { overflow: hidden; }
+.tg__url { color: var(--dark-100); user-select: all; -webkit-user-select: all; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tg__menu, .tg.is-open .tg__menu { transform: translateX(calc(-50% + var(--tg-shift, 0px))); }
+}
+
+/* Бургер и всплывающее меню — только на телефоне */
+.floatbar__group--burger,
+.menu-pop { display: none; }
+
+/* Квадратная кнопка с одной иконкой: 54×54, как в Figma */
+.btn--icon { padding: 17px; }
+
+/* ============================================================
+   ПАРЯЩЕЕ МЕНЮ НА ТЕЛЕФОНЕ (Figma 517:39660, 517:39835)
+   Две капсулы: бургер 62×62 и «Резюме / Telegram» на остаток ширины.
+   Ширина — экран минус поля 16, но не больше 400 px: на больших
+   телефонах и планшетах меню не раздувается.
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Та же капсула, что на десктопе (Figma 10103:63447): высота 62,
+     ширина по содержимому — меню не растягивается на планшете */
+  .floatbar {
+    bottom: calc(var(--space-24) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .floatbar__burger[aria-expanded="true"] { background: var(--btn-secondary); }
+
+  /* --- Всплывающее меню: вырастает из бургера --- */
+  .menu-pop {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + var(--space-8));
+    width: 240px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    padding: var(--space-16);
+    background: var(--light-100);
+    border-radius: var(--radius-menu);
+    box-shadow: var(--shadow-2-mini);
+    white-space: normal;
+
+    /* закрыто: виден только круг размером с бургер у нижнего левого угла */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(var(--space-8));
+    clip-path: inset(calc(100% - 62px) calc(100% - 62px) 0 0 round 31px);
+    transition:
+      clip-path var(--dur-menu-out) var(--ease-menu),
+      transform var(--dur-menu-out) var(--ease-menu),
+      opacity var(--dur-menu-out) linear,
+      visibility 0s var(--dur-menu-out);
+  }
+
+  .floatbar.is-open .menu-pop {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0 round var(--radius-menu));
+    transition:
+      clip-path var(--dur-menu-in) var(--ease-menu),
+      transform var(--dur-menu-in) var(--ease-menu),
+      opacity 160ms linear,
+      visibility 0s;
+  }
+
+  /* Пункты проявляются по очереди, снизу вверх */
+  .menu-pop__item {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 160ms linear, transform 160ms var(--ease-menu);
+  }
+
+  .floatbar.is-open .menu-pop__item {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 260ms linear calc(120ms + var(--i) * 45ms),
+      transform 360ms var(--ease-menu) calc(120ms + var(--i) * 45ms);
+  }
+}
+
+/* На самых узких экранах (до 359 px) «Резюме» и «Telegram» компактнее */
+@media (max-width: 359px) {
+  .floatbar__group--actions .btn {
+    gap: 6px;
+    padding-left: var(--space-12);
+    padding-right: var(--space-12);
+    font-size: var(--fs-s);
+  }
+}
+
+/* --- Содержимое всплывающего меню --- */
+.menu-pop__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-pop__link {
+  display: block;
+  padding: 6px 0;                 /* шаг строк 42 px = 30 + отступ 12 из макета */
+  font-size: var(--fs-sub-xl);
+  line-height: var(--lh-sub-xl);
+  font-weight: var(--fw-medium);
+  color: var(--dark-100);
+}
+
+.menu-pop__links li:first-child .menu-pop__link { padding-top: 0; }
+
+.menu-pop__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.menu-pop__label { color: var(--dark-60); }
+
+.menu-pop__mail {
+  color: var(--dark-100);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ============================================================
+   ПЛАШКА И СЛОТЫ ПОД КАРТИНКИ
+
+   Плашка держит пропорции кадра из Figma, слоты стоят в ней
+   в координатах макета — всё масштабируется вместе.
+
+   <div class="plate" style="--pw:848; --ph:679">
+     <div class="slot slot--phone" style="--x:273; --y:29; --w:302; --h:624"
+          data-file="catalog-after.png" data-size="604×1248">
+       <img src="assets/case/catalog-after.png" alt="">
+     </div>
+   </div>
+
+   Пока файла нет — видна заглушка с именем и размером.
+   Положил PNG с этим именем в assets/case — заглушка исчезает сама.
+   ============================================================ */
+.plate {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--pw) / var(--ph);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface-card);
+}
+
+.plate--outline {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--dark-20);
+}
+
+.plate--bare {
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.plate--promo { background: var(--promo-plate); }
+
+/* Фото со встречи: тёмная подложка */
+.plate--photo { background: var(--photo-bg); }
+
+/* Окно браузера: рамка и тень «shadow 2 (mini)» */
+.plate--window {
+  overflow: visible;
+  background: none;
+  box-shadow: var(--shadow-2-mini);
+}
+
+/* Окно браузера: высота плашки = высота скриншота, без пустот сверху и снизу.
+   Пока картинки нет — держим пропорции из макета. */
+.plate--window { aspect-ratio: auto; }
+
+.plate--window > .slot {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.plate--window > .slot.is-loaded { aspect-ratio: auto; }
+
+.plate--window > .slot.is-loaded img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plate--window .slot { border-radius: var(--radius-card); }
+
+.plate--window .slot.is-loaded {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--dark-20);
+}
+
+.slot {
+  position: absolute;
+  left: calc(var(--x) / var(--pw) * 100%);
+  top: calc(var(--y) / var(--ph) * 100%);
+  width: calc(var(--w) / var(--pw) * 100%);
+  aspect-ratio: var(--w) / var(--h);
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-s);
+  background:
+    repeating-linear-gradient(135deg,
+      transparent 0 9px,
+      rgba(35, 35, 37, .035) 9px 10px),
+    var(--dark-06);
+  box-shadow: inset 0 0 0 1px var(--dark-30);
+}
+
+.slot::before {
+  content: attr(data-file) "\A" attr(data-size);
+  white-space: pre;
+  padding: var(--space-8);
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--dark-60);
+}
+
+.slot--phone { border-radius: 13% / 6.3%; }
+.slot--mini::before { content: none; }
+
+/* Слот вне плашки: просто блок по ширине родителя */
+.slot--flow {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 100%;
+}
+
+.slot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.slot--cover img { object-fit: cover; }
+
+/* Тень у карточки на скриншоте (партнёрские карточки, фильтры, длинные экраны) */
+.slot--shadow.is-loaded img { filter: var(--shadow-2-mini-drop); }
+
+.slot.is-loaded {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.slot.is-loaded::before { content: none; }
+
+
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.figure--tight { gap: 0; }
+
+.cap {
+  font-size: var(--fs-s);
+  line-height: var(--lh-s);
+  color: var(--dark-50);
+}
+
+.cap--center { text-align: center; }
+
+/* ============================================================
+   СТРЕЛКИ ЛИСТАНИЯ «назад / вперёд» (Figma: arrow 9959:165951,
+   arrow_atom 9959:165932 — default / hover / disabled).
+   Кнопка 44×44, иконка 20 px — SVG в разметке, цвет currentColor
+   (маска из файла не грузится, если сайт открыт через file://).
+   Дальше листать некуда — кнопка disabled.
+   ============================================================ */
+.arrows {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.arrows__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: var(--dark-06);
+  color: var(--main-dark-100);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.arrows__btn svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+@media (hover: hover) {
+  .arrows__btn:hover:not(:disabled) { background: var(--btn-secondary); }
+}
+
+.arrows__btn:disabled {
+  color: var(--dark-30);
+  cursor: default;
+}
+
+/* В плашке-слайдере — в правом верхнем углу, отступ 16 */
+.slider > .arrows {
+  position: absolute;
+  top: var(--space-16);
+  right: var(--space-16);
+  z-index: 3;
+}
+
+/* ============================================================
+   СЛАЙДЕР — нативная прокрутка со снапом + автопрокрутка (js/ui.js)
+   Раз в 4 секунды показывает следующий слайд, после последнего
+   возвращается к первому. Активная точка заполняется синим, пока
+   идёт отсчёт. Пауза: курсор или фокус внутри, слайдер вне экрана,
+   касание пальцем (продолжит через 6 секунд).
+   ============================================================ */
+.slider { position: relative; }
+
+.slider__track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.slider__track::-webkit-scrollbar { display: none; }
+
+.slider__slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+}
+
+/* Лента шире плашки: несколько макетов в ряд, часть за краем */
+.slider--row .slider__track { scroll-snap-type: none; }
+
+/* Ширина ленты и её система координат задаются инлайном:
+   style="flex-basis:129.72%; --pw:1100" — лента 1100 в плашке 848 */
+.slider__canvas {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+}
+
+.dots {
+  position: absolute;
+  top: calc(32 / var(--ph) * 100%);
+  right: calc(32 / var(--pw) * 100%);
+  z-index: 3;
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  background: var(--dots-bg);
+}
+
+.dots__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-r);
+  background: var(--dark-20);
+  cursor: pointer;
+  transition:
+    width var(--dur-nav) var(--ease-nav),
+    background-color var(--dur-nav) var(--ease-nav);
+}
+
+/* Зона нажатия больше самой точки */
+.dots__dot::after {
+  content: "";
+  position: absolute;
+  inset: -10px -3px;
+}
+
+.dots__dot[aria-current="true"] { width: 24px; }
+
+/* Заливка активной точки — индикатор отсчёта до следующего слайда */
+.dots__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: inherit;
+  background: var(--accent-blue);
+  pointer-events: none;
+}
+
+/* Без автопрокрутки (нет JS, «уменьшить движение») — точка просто синяя */
+.slider:not(.is-auto) .dots__dot[aria-current="true"] .dots__fill { width: 100%; }
+
+.slider.is-auto .dots__dot[aria-current="true"] .dots__fill {
+  animation: dot-progress var(--slide-time) linear forwards;
+}
+
+.slider.is-paused .dots__fill { animation-play-state: paused; }
+
+@keyframes dot-progress {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ============================================================
+   СЛАЙДЕР НА ТЕЛЕФОНЕ
+   Слайд «раскрывается»: листаем по одному айфону. Каждый айфон
+   занимает всю ширину плашки (поля добирают отступы), поэтому
+   соседние скриншоты не видны. Ширина айфона — как на десктопе.
+   С 961 px и шире — два айфона на слайде, как в макете.
+   Ленты (.slider--row) сюда не относятся: у них своя раскладка в case.css.
+   ============================================================ */
+@media (max-width: 960px) {
+  .slider[data-autoplay]:not(.slider--row) {
+    aspect-ratio: auto;
+    height: calc(var(--phone-w) * 536 / 260 + 64px);
+  }
+
+  .slider[data-autoplay]:not(.slider--row) .slider__track {
+    align-items: flex-start;
+    padding: var(--space-40) 0 var(--space-24);
+    scroll-snap-type: x mandatory;
+  }
+
+  .slider[data-autoplay]:not(.slider--row) .slider__slide { display: contents; }
+
+  .slider[data-autoplay]:not(.slider--row) .slot--phone {
+    position: relative;
+    left: auto;
+    top: auto;
+    flex: 0 0 var(--phone-w);
+    width: var(--phone-w);
+    margin-inline: calc((100% - var(--phone-w)) / 2);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .slider[data-autoplay]:not(.slider--row) .dots {
+    top: var(--space-16);
+    right: var(--space-16);
+  }
+}

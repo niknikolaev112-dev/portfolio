@@ -1,0 +1,916 @@
+/* ============================================================
+   КЕЙС-СТАДИ — светлая версия
+   Раскладка страницы кейса и её компоненты: парящее меню,
+   закреплённая навигация, плашки со слотами под картинки, выноски,
+   переключатель «Было / Стало», слайдер.
+
+   Сетка: поля 100 · левая колонка 328 · отступ 64 · контент 848.
+   Все размеры и цвета — из tokens.css.
+   ============================================================ */
+
+.case { --gutter: var(--case-gutter); }
+
+/* ============================================================
+   ОБЛОЖКА КЕЙСА — витрина как на главной (showcase.css), во всю ширину окна
+   Figma «Новая обложка в ТС / СИ» (10098:72531, 10098:72921, 10098:73570)
+   ============================================================ */
+.case .page { max-width: none; }
+
+.cover { padding: var(--space-40) var(--page-edge) 0; }
+
+/* Тело кейса остаётся в сетке 1440 по центру */
+.case-body {
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+/* Первый раздел «О проекте»: что сделал + команда, скоуп, роль, год */
+.project-about__lead { max-width: var(--measure); }
+
+
+/* ============================================================
+   ОБЛОЖКА КЕЙСА
+   ============================================================ */
+.case-hero {
+  padding: var(--space-40) var(--gutter);
+}
+
+.case-hero__top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-col);
+}
+
+.case-hero__title {
+  width: var(--col-side);
+  flex: 0 0 var(--col-side);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.case-hero__facts {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-24) var(--space-16);
+}
+
+.metrics--loose { row-gap: var(--space-32); }
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+
+.fact-pair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.fact-pair__label { color: var(--dark-60); }
+.fact-pair__label--soft { color: var(--dark-50); }
+
+.case-hero__media { margin-top: var(--space-40); }
+
+/* ============================================================
+   ТЕЛО КЕЙСА: закреплённое меню + колонка контента
+   ============================================================ */
+.case-body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-col);
+  padding: var(--space-40) var(--gutter) var(--space-80);
+}
+
+/* Тело — последний блок страницы (кейс ипотеки): снизу больше воздуха */
+.case-body--end { padding-bottom: 160px; }
+
+/* Баннер следующего кейса внизу страницы — копия обложки (hero) следующего кейса:
+   на всю ширину окна, поля как у .cover. Снизу место под парящее меню */
+.next-case { padding: 0 var(--page-edge) 160px; }
+
+/* Цифра роста метрики прямо в заголовке блока */
+.metric-up { color: var(--metric-up); }
+
+.case-main {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: var(--case-main);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+}
+
+/* Раздел = пункт меню. Внутри — один или несколько блоков */
+.chapter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  scroll-margin-top: var(--nav-top);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.block__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* Абзацы уже колонки, как в макете ипотеки (788 из 848) */
+.block__text--narrow { max-width: var(--measure); }
+
+.block__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+
+/* ============================================================
+   ЗАКРЕПЛЁННОЕ МЕНЮ КЕЙСА
+   Состояния пункта — из UI Kit (Experience Header):
+   default  Regular · Dark_60
+   hover    Regular · Dark_40
+   active   Medium  · Dark_100 + точка 4px
+   Переход между состояниями: 300ms ease-in-out
+   ============================================================ */
+.case-nav {
+  --nav-default: var(--dark-60);
+  --nav-hover: var(--dark-40);
+  --nav-active: var(--dark-100);
+
+  position: sticky;
+  top: var(--nav-top);
+  width: var(--col-side);
+  flex: 0 0 var(--col-side);
+  padding: var(--space-24);
+  background: var(--surface-card);
+  border-radius: var(--radius-nav);
+  transition: top var(--dur-nav) var(--ease-nav);
+}
+
+.case-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.case-nav__link {
+  display: flex;
+  align-items: center;
+  color: var(--nav-default);
+  font-size: var(--fs-m);
+  line-height: var(--lh-m);
+  font-weight: var(--fw-regular);
+  transition:
+    color var(--dur-nav) var(--ease-nav),
+    font-weight var(--dur-nav) var(--ease-nav);
+}
+
+/* Точка активного пункта: выезжает и сдвигает текст */
+.case-nav__link::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0;
+  height: 4px;
+  margin-right: 0;
+  border-radius: 5px;
+  background: currentColor;
+  opacity: 0;
+  transition:
+    width var(--dur-nav) var(--ease-nav),
+    margin-right var(--dur-nav) var(--ease-nav),
+    opacity var(--dur-nav) var(--ease-nav);
+}
+
+.case-nav__link:hover { color: var(--nav-hover); }
+
+.case-nav__link[aria-current="true"] {
+  color: var(--nav-active);
+  font-weight: var(--fw-medium);
+}
+
+.case-nav__link[aria-current="true"]::before {
+  width: 4px;
+  margin-right: var(--space-8);
+  opacity: 1;
+}
+
+/* ============================================================
+   ПЛИТКИ С ЦИФРАМИ (переопределяют базовую .stat-card)
+   ============================================================ */
+.case .stat-cards { gap: var(--space-8); }
+
+.case .stat-card {
+  gap: var(--space-16);
+  padding: var(--space-24);
+}
+
+.case .stat-card__value {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+.case .stat-card__label { color: var(--dark-100); }
+
+/* ============================================================
+   СТРЕЛКИ МЕЖДУ ЭКРАНАМИ (коннекторы из Figma, кейс ипотеки)
+   Стоят в координатах плашки, масштабируются вместе с ней.
+   ============================================================ */
+.connector {
+  position: absolute;
+  left: calc(var(--x) / var(--pw) * 100%);
+  top: calc(var(--y) / var(--ph) * 100%);
+  width: calc(var(--w) / var(--pw) * 100%);
+  height: auto;
+  aspect-ratio: var(--w) / var(--h);
+  color: var(--connector);
+  pointer-events: none;
+  transition: opacity var(--dur-nav) var(--ease-nav);
+}
+
+.connector--dark { color: var(--dark-40); }
+
+/* ============================================================
+   ЛЕНТА-СЛАЙДЕР («Рекомендации»): три экрана со стрелками,
+   раз в 4 секунды лента сдвигается на один айфон —
+   экраны 1–2, потом 2–3, потом снова 1–2.
+   Стрелка к экрану за кадром — бледная, как в макете.
+   ============================================================ */
+.slider--flow .slider__track {
+  overflow: hidden;
+  scroll-snap-type: none;
+}
+
+.slider--flow .slider__canvas {
+  /* Шаг (--sw) и ширина ленты (--pw) — инлайном на .slider__canvas; по умолчанию как в ВЗР */
+  transform: translateX(calc(var(--step, 0) * var(--sw, 352) * -1 / var(--pw, 1100) * 100%));
+  transition: transform var(--slide-move) cubic-bezier(.65, 0, .35, 1);
+}
+
+.slider--flow[data-step="0"] .connector--b,
+.slider--flow[data-step="1"] .connector--a { opacity: .2; }
+.slider--flow:not([data-step]) .connector--b { opacity: .2; }
+
+/* Ленты кейса «Мой дом»: яркая только стрелка между двумя экранами в кадре */
+.slider--flow .connector[class*="connector--s"] { opacity: .2; }
+.slider--flow:not([data-step]) .connector--s0,
+.slider--flow[data-step="0"] .connector--s0,
+.slider--flow[data-step="1"] .connector--s1,
+.slider--flow[data-step="2"] .connector--s2,
+.slider--flow[data-step="3"] .connector--s3,
+.slider--flow[data-step="4"] .connector--s4,
+.slider--flow[data-step="5"] .connector--s5 { opacity: 1; }
+
+/* Четыре экрана сеткой 2×2 (состояния защиты в «Мой дом») */
+.pair--grid { row-gap: var(--space-32); }
+
+/* Обрезанный телефон: видно --vh из --h. Длинный экран режем в промежутке
+   между блоками — ниже белая плашка, шва не видно */
+.plate > .slot--cut {
+  aspect-ratio: var(--w) / var(--vh);
+  overflow: hidden;
+}
+
+.plate > .slot--cut img {
+  bottom: auto;
+  height: auto;
+}
+
+/* Диваны: три в ряд, карточки 3:2 */
+.illus.illus--sofas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.illus--sofas .illus__card.illus__card { aspect-ratio: 3 / 2; }
+.illus--sofas .slot { width: 100%; height: 100%; aspect-ratio: auto; }
+
+/* ============================================================
+   ВЫНОСКИ
+   Подпись стоит в координатах плашки, линия тянется к макету.
+   Всё в пикселях макета и масштабируется вместе с плашкой:
+   --len — длина линии, --gap — зазор между подписью и линией,
+   --ly  — на какой высоте от верха подписи идёт линия.
+   ============================================================ */
+.annot {
+  --gap: 12;
+  --ly: 10;
+
+  position: absolute;
+  left: calc(var(--x) / var(--pw) * 100%);
+  top: calc(var(--y) / var(--ph) * 100%);
+  width: calc(var(--w) / var(--pw) * 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 2;
+}
+
+.annot__title {
+  font-size: var(--fs-s);
+  line-height: var(--lh-s);
+  font-weight: var(--fw-medium);
+  color: var(--dark-100);
+}
+
+.annot__text {
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--dark-50);
+}
+
+.annot__line {
+  position: absolute;
+  top: calc(var(--ly) * 1px);
+  width: calc(var(--len) / var(--w) * 100%);
+  height: 1.8px;
+  border-radius: 2px;
+  background: var(--dark-30);
+}
+
+/* Как в Figma: точка — на макете, стрелка — у подписи */
+.annot__line::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 4.75px);
+  width: 9.5px;
+  height: 9.5px;
+  border-radius: 50%;
+  background: var(--dark-30);
+}
+
+.annot__line::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 7px);
+  width: 8px;
+  height: 14px;
+  background: var(--dark-30);
+  -webkit-mask: var(--annot-arrow) center / 100% 100% no-repeat;
+          mask: var(--annot-arrow) center / 100% 100% no-repeat;
+}
+
+.annot {
+  --annot-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath d='M1 1l6 6-6 6' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Подпись справа от макета — линия уходит влево */
+.annot--right .annot__line { right: calc(100% + var(--gap) / var(--w) * 100%); }
+.annot--right .annot__line::after { left: -4.75px; }
+.annot--right .annot__line::before { right: -0.6px; }
+
+/* Подпись слева от макета — линия уходит вправо */
+.annot--left .annot__line { left: calc(100% + var(--gap) / var(--w) * 100%); }
+.annot--left .annot__line::after { right: -4.75px; }
+.annot--left .annot__line::before { left: -0.6px; transform: scaleX(-1); }
+
+/* ============================================================
+   ПЕРЕКЛЮЧАТЕЛЬ «БЫЛО / СТАЛО»
+   ============================================================ */
+.compare {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* Компонент Figma «segment control» (370:37415): залитая капсула без обводки,
+   активная кнопка — белая, с тенью «shadow 2 (mini)». Первой стоит «Стало». */
+.segment {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  --seg-pad: 5px;              /* как в Figma: бегунок 46 px в капсуле 56 px */
+  height: 56px;
+  padding: var(--seg-pad);
+  border-radius: var(--radius-pill);
+  background: var(--btn-secondary);
+}
+
+/* Бегунок */
+.segment::before {
+  content: "";
+  position: absolute;
+  top: var(--seg-pad);
+  bottom: var(--seg-pad);
+  left: var(--seg-pad);
+  width: calc(50% - var(--seg-pad) - var(--space-2));
+  border-radius: var(--radius-pill);
+  background: var(--light-100);
+  box-shadow: var(--shadow-2-mini);
+  transition: transform var(--dur-nav) var(--ease-nav);
+}
+
+/* Второй вариант выбран — бегунок справа («Было», «Десктоп») */
+.segment[data-value="before"]::before,
+.segment[data-value="desktop"]::before { transform: translateX(calc(100% + var(--space-4))); }
+
+.segment__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  position: relative;
+  z-index: 1;
+  padding: var(--space-12) var(--space-16);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  font-family: inherit;
+  font-size: var(--fs-m);
+  line-height: var(--lh-m);
+  font-weight: var(--fw-medium);
+  color: var(--dark-60);
+  cursor: pointer;
+  transition: color var(--dur-nav) var(--ease-nav);
+}
+
+/* Иконка в переключателе «Мобайл / Десктоп» */
+.segment__icon { flex: 0 0 auto; width: 20px; height: 20px; color: var(--dark-50); transition: color var(--dur-nav) var(--ease-nav); }
+.segment__btn[aria-pressed="true"] .segment__icon { color: var(--dark-100); }
+
+/* Переключатель стоит отдельно от картинки: отступ как между блоками */
+.compare--loose { gap: var(--space-32); }
+
+.segment__btn[aria-pressed="true"] { color: var(--dark-100); }
+
+.compare__panes { display: grid; grid-template-columns: minmax(0, 1fr); }
+
+.compare__pane {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--dur-nav) var(--ease-nav),
+    visibility 0s var(--dur-nav);
+}
+
+/* Высоту блока задаёт только активная вкладка: у «Было» и «Стало»
+   разная высота скриншотов, лишней пустоты под меньшим быть не должно */
+.compare__panes { position: relative; }
+.compare__pane:not(.is-active) { position: absolute; top: 0; left: 0; right: 0; }
+
+.compare__pane.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Своя подпись у «Стало» и «Было»: видна та, чья вкладка выбрана */
+.figure:has(.segment[data-value="after"]) .cap__pane[data-value="before"],
+.figure:has(.segment[data-value="before"]) .cap__pane[data-value="after"] { display: none; }
+
+/* ============================================================
+   СЕТКА ИЛЛЮСТРАЦИЙ
+   ============================================================ */
+.illus {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+
+.illus__card {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.illus__more {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-h1);
+  color: var(--dark-60);
+}
+
+/* ============================================================
+   ПРОМО eSIM — синяя секция во всю ширину
+   Иллюстрация лежит под контентом и заходит под плашку на 52px.
+   ============================================================ */
+.promo {
+  position: relative;
+  margin-inline: calc(50% - 50vw);       /* голубой фон — в край экрана */
+  overflow: hidden;
+  background: var(--promo-bg);
+  color: var(--light-100);
+  scroll-margin-top: 0;
+}
+
+.promo__inner {
+  position: relative;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-col);
+  padding: var(--space-80) var(--gutter) 0;
+}
+
+.promo__spacer { width: var(--col-side); flex: 0 0 var(--col-side); }
+
+/* Иллюстрация не тянется: её размер постоянный (высота 433, как в макете),
+   она стоит по центру и обрезается по бокам. На широком экране растёт
+   только голубое пространство — фон продолжает край картинки. */
+.promo__art {
+  position: relative;
+  z-index: 1;
+  margin-top: -52px;
+  height: 433px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    #1f8ffb 0%, #1f8ffb 8.3%, #2294fc 16.7%, #2b9bfc 25%, #3ba3fd 33.3%,
+    #4eaefd 41.7%, #63b7fe 50%, #73befc 58.3%, #81c4fb 66.7%,
+    #86c6fb 75%, #8ac7fa 83.3%, #8cc8fb 91.7%, #8bc8fd 100%);
+}
+
+.promo__art .slot {
+  position: relative;
+  left: auto;
+  top: auto;
+  flex: none;
+  width: auto;
+  height: 100%;
+  border-radius: 0;
+}
+
+.promo__art .slot.is-loaded { aspect-ratio: auto; }
+
+.promo__art .slot.is-loaded img {
+  position: static;
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+.promo__art .slot:not(.is-loaded) {
+  background: rgba(255, 255, 255, .12);
+  box-shadow: none;
+}
+
+.promo__art .slot::before { color: var(--light-100); padding-bottom: 120px; }
+
+.plate--promo .slot:not(.is-loaded) { background: rgba(255, 255, 255, .5); }
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+@media (max-width: 1180px) {
+  :root { --case-gutter: 48px; --gap-col: 40px; --col-side: 264px; }
+}
+
+/* ============================================================
+   ПЛАНШЕТ И ТЕЛЕФОН: одна колонка.
+   Меню разделов превращается в липкую строку сверху,
+   она листается вбок и подсвечивает текущий раздел.
+   ============================================================ */
+@media (max-width: 960px) {
+  :root {
+    --case-gutter: 32px;
+    --nav-top: 64px;                 /* раздел встаёт под липкую строку */
+  }
+
+  .case-hero__top,
+  .case-body,
+  .promo__inner { flex-direction: column; }
+
+  .case-hero__title { width: 100%; flex: 1 1 auto; }
+
+  .promo__spacer { display: none; }
+
+  .case-main { max-width: none; }
+
+  .case-body { gap: var(--space-24); }
+
+  .case-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: auto;
+    flex: none;
+    align-self: stretch;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: var(--space-12) 0;
+    border-radius: 0;
+    background: rgba(246, 247, 248, .88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .case-nav__list {
+    flex-direction: row;
+    gap: var(--space-20);
+    padding: 0 var(--gutter);
+    overflow-x: auto;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .case-nav__list::-webkit-scrollbar { display: none; }
+
+  .case-nav__link {
+    white-space: nowrap;
+    font-size: var(--fs-s);
+    line-height: var(--lh-s);
+  }
+}
+
+/* ============================================================
+   ТЕЛЕФОН — по аналогии с главной (Figma 517:39660)
+   Текст 16 → 14, заголовки меньше, поля 16.
+   Скриншоты не уменьшаются: в плашке картинки встают в колонку
+   в своём десктопном размере (но не шире экрана). Выноски —
+   списком под макетом. Широкие десктопные скриншоты листаются вбок.
+   ============================================================ */
+/* Обложка: на телефоне и узком планшете — мобильная витрина, поля 12 */
+@media (max-width: 899px) {
+  .cover { padding: var(--space-16) var(--page-edge-m) 0; }
+  .next-case { padding-inline: var(--page-edge-m); }
+}
+
+@media (max-width: 767px) {
+  /* Парящее меню кейса «← | Резюме · Telegram» (Figma «with back mob»):
+     стрелка назад 52×54, подпись «Вернуться» только для скринридеров */
+  .case .floatbar__back {
+    width: 52px;
+    padding-inline: 0;
+  }
+
+  .case .floatbar__back span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* «О проекте»: факты в одну колонку */
+  .project-about .facts { grid-template-columns: minmax(0, 1fr); gap: var(--space-12); }
+
+  :root { --case-gutter: var(--space-16); }
+
+  /* --- Типографика --- */
+  .case .t-text { font-size: var(--fs-s); line-height: var(--lh-s); }
+
+  .case .t-h2 {
+    font-size: var(--fs-sub-xl);
+    line-height: var(--lh-sub-xl);
+    letter-spacing: 0;
+  }
+
+  .case-hero__title .t-h2 {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+  }
+
+  .case .t-h3,
+  .case .stat-card__value {
+    font-size: var(--fs-sub-l);
+    line-height: var(--lh-sub-l);
+  }
+
+  .fact-pair__label,
+  .cap {
+    font-size: var(--fs-xs);
+    line-height: var(--lh-xs);
+  }
+
+  .illus__more {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+  }
+
+  /* --- Обложка --- */
+  .case-hero { padding: var(--space-24) var(--gutter); }
+  .case-hero__top { gap: var(--space-24); }
+  .case-hero__title { gap: var(--space-12); }
+  .case-hero__facts { gap: var(--space-24); }
+  .metrics { gap: var(--space-20) var(--space-16); }
+  .case-hero .facts { grid-template-columns: minmax(0, 1fr); gap: var(--space-12); }
+  .case-hero__media { margin-top: var(--space-24); }
+
+  /* --- Тело --- */
+  .case-body { padding: 0 var(--gutter) 120px; }   /* снизу — место под парящее меню */
+  .case-main,
+  .chapter { gap: var(--space-56); }
+  .block { gap: var(--space-20); }
+  .block__head { gap: var(--space-16); }
+  .figure { gap: var(--space-8); }
+
+  .pair { grid-template-columns: minmax(0, 1fr); gap: var(--space-20); }
+
+  /* Цифры — квадратики в ряд, листаются вбок: видно два и край третьего */
+  .case .stat-cards--2,
+  .case .stat-cards--3 {
+    display: flex;
+    gap: var(--space-8);
+    width: calc(100% + 2 * var(--gutter));   /* в край экрана с обеих сторон */
+    max-width: none;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    contain: inline-size;      /* ряд карточек не распирает страницу по ширине */
+  }
+
+  .case .stat-cards::-webkit-scrollbar { display: none; }
+
+  .case .stat-card {
+    flex: 0 0 auto;
+    width: min(calc((100vw - 2 * var(--gutter) - 2 * var(--space-8) - 40px) / 2), var(--stat-card-max));   /* на широком телефоне и планшете не раздуваются */
+    /* Единый вид всех карточек с цифрами на мобилке: цифра сверху,
+       подпись под ней через 24 px, высота по содержимому (в ленте — по самой высокой) */
+    justify-content: flex-start;
+    gap: var(--stat-card-gap-m);
+    padding: var(--space-16);
+    scroll-snap-align: start;
+  }
+
+  .case .stat-card__label {
+    font-size: var(--fs-xs);
+    line-height: var(--lh-xs);
+  }
+
+  /* Одна-две цифры — без ленты: растянуты на ширину колонки, поровну.
+     Три и больше — лента со скроллом, как выше */
+  .case .stat-cards:not(:has(> .stat-card:nth-child(3))) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .case .stat-cards:not(:has(> .stat-card:nth-child(3))) > .stat-card { width: auto; }
+
+  .illus,
+  .illus.illus--sofas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-12); }
+
+  .segment { height: 52px; }
+
+  /* --- Плашки: картинки в колонку в своём размере --- */
+  .case .plate:not(.slider),
+  .case .slider--row {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-16);
+    padding: var(--space-24) var(--space-16);
+  }
+
+  .case .plate:not(.slider) > .slot,
+  .case .slider--row .slot {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(calc(var(--w) * 1px), 100%);
+  }
+
+  /* Мелкие айфоны из макета (три в ряд) на телефоне — крупно, как остальные */
+  .case .plate:not(.slider) > .slot--phone { width: min(100%, max(calc(var(--w) * 1px), 302px)); }
+
+  /* Телефон, который в макете обрезан нижним краем плашки (--vh — сколько
+     его видно): на телефоне режем так же, плашка не вытягивается под
+     весь мокап и низ айфона не вылезает */
+  .case .plate:not(.slider) > .slot--cut {
+    aspect-ratio: var(--w) / var(--vh);
+    overflow: hidden;
+  }
+
+  .case .plate:not(.slider) > .slot--cut img {
+    bottom: auto;
+    height: auto;
+  }
+
+  .case .plate:not(.slider):has(> .slot--cut) { padding-bottom: 0; }
+
+  /* Экран обрезан в промежутке, а не краем плашки — отступ снизу оставляем */
+  .case .plate:not(.slider):has(> .slot--trim) { padding-bottom: var(--space-24); }
+
+  .case .plate--bare:not(.slider),
+  .case .plate--photo:not(.slider) { padding: 0; }
+  .case .plate--photo:not(.slider) > .slot { width: 100%; }
+
+  /* Окно браузера: десктопный скриншот листается вбок в край экрана,
+     контейнер его не обрезает; ширина 640 — пропорции как сейчас */
+  .case .plate--window:not(.slider) {
+    display: block;
+    width: calc(100% + 2 * var(--gutter));   /* в край экрана с обеих сторон */
+    max-width: none;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: var(--space-8) var(--gutter) var(--space-24);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border-radius: 0;
+    box-shadow: none;
+    scrollbar-width: none;
+  }
+
+  .case .plate--window:not(.slider)::-webkit-scrollbar { display: none; }
+
+  .case .plate--window:not(.slider) > .slot {
+    width: 640px;
+    max-width: none;
+    box-shadow: var(--shadow-2-mini);
+  }
+
+  /* Готовая композиция из нескольких экранов одной картинкой (auth-before):
+     на телефоне не ужимаем, а листаем вбок в край экрана, как окно браузера */
+  .case .plate--wide:not(.slider) {
+    display: block;
+    width: calc(100% + 2 * var(--gutter));
+    max-width: none;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border-radius: 0;
+    background: none;
+    scrollbar-width: none;
+  }
+
+  .case .plate--wide:not(.slider)::-webkit-scrollbar { display: none; }
+
+  .case .plate--wide:not(.slider) > .slot {
+    width: 720px;
+    max-width: none;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  /* Выноски — списком под макетом */
+  .case .annot {
+    position: static;
+    width: 100%;
+    padding-left: var(--space-12);
+    box-shadow: inset 2px 0 0 var(--dark-20);
+  }
+
+  .case .annot__line { display: none; }
+
+  /* Экраны идут в колонку — стрелки между ними не нужны */
+  .case .connector { display: none; }
+
+  /* Лента «Рекомендации»: айфоны в колонку, точки не нужны */
+  .case .slider--row .slider__track {
+    position: static;
+    display: block;
+    align-self: stretch;
+    overflow: visible;
+  }
+
+  .case .slider--row .slider__canvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-16);
+    width: 100%;
+    height: auto;
+  }
+
+  .case .slider--row .dots,
+  .case .slider--row .arrows { display: none; }
+  .case .slider--flow .slider__canvas { transform: none; }
+
+  /* --- Промо eSIM --- */
+  .promo__inner { padding: var(--space-40) var(--gutter) 0; }
+  .promo__art { height: 240px; margin-top: -24px; }
+}

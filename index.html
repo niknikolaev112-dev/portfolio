@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Product Designer в&nbsp;Сравни</title>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<!-- Превью ссылки в Telegram, VK, Slack. og:image и og:url — полными адресами, иначе мессенджеры не покажут картинку -->
+<meta name="description" content="Проектирую web и mobile app интерфейсы 5 лет. Сам провожу интервью с пользователями. В Сравни поднял локальную дизайн-систему с нуля и пересобрал старую с дизайн-командой. Работаю в Claude и Higgsfield">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Product Designer в&nbsp;Сравни">
+<meta property="og:description" content="Проектирую web и mobile app интерфейсы 5 лет. Сам провожу интервью с пользователями. В Сравни поднял локальную дизайн-систему с нуля и пересобрал старую с дизайн-командой. Работаю в Claude и Higgsfield">
+<meta property="og:url" content="https://niknikolaev.ru/">
+<meta property="og:image" content="https://niknikolaev.ru/assets/site-service/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/google-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/tokens.css?v=2026-11-05c">
+<link rel="stylesheet" href="css/base.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/components.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/showcase.css?v=2026-11-02h">
+<link rel="stylesheet" href="css/home.css?v=2026-11-05e">
+<!-- Yandex.Metrika counter (только на niknikolaev.ru и запасной копии *.github.io: локальные просмотры не попадают в статистику) -->
+<script type="text/javascript">
+  if (/(^|\.)niknikolaev\.ru$|\.github\.io$/.test(location.hostname)) {
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113790440', 'ym');
+
+    ym(113790440, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  }
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113790440" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body class="home">
+
+<!-- ================= Парящее меню: на главной только «Резюме · Telegram» ================= -->
+<nav class="floatbar" aria-label="Контакты">
+    <!-- component:floatbar-actions -->
+    <div class="floatbar__group floatbar__group--actions">
+          <a class="btn" href="resume/" target="_blank" rel="noopener" data-goal="resume"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11.7895 1.88721L11.6666 1.875H8.33328C7.98812 1.875 7.70829 2.15483 7.70829 2.5V8.95833H5.83329C5.59078 8.95833 5.36975 9.09842 5.26688 9.318C5.16403 9.53767 5.1979 9.79742 5.35315 9.98375L9.51986 14.9837C9.63853 15.1261 9.81453 15.2083 9.99994 15.2083C10.1854 15.2083 10.3614 15.1261 10.4801 14.9837L14.6468 9.98375C14.802 9.79742 14.8351 9.53767 14.7322 9.318C14.6293 9.09858 14.409 8.95833 14.1666 8.95833H12.2916V2.5C12.2916 2.33424 12.2257 2.17532 12.1085 2.05811C12.0207 1.97029 11.9095 1.91127 11.7895 1.88721Z"/><path d="M15.6254 16.458C16.0856 16.458 16.4587 16.8311 16.4587 17.2913C16.4587 17.7516 16.0856 18.1247 15.6254 18.1247H4.37533C3.91509 18.1247 3.54199 17.7516 3.54199 17.2913C3.54199 16.8311 3.91509 16.458 4.37533 16.458H15.6254Z"/></svg><span>Резюме</span></a>
+          <div class="tg" data-tg>
+            <button class="btn btn--primary tg__btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="tg-menu"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.23741 9.42173C7.06923 7.31658 10.2912 5.92873 11.9033 5.25819C16.5063 3.34367 17.4627 3.0111 18.0861 3.00012C18.2232 2.9977 18.5298 3.03168 18.7284 3.19282C18.8961 3.32888 18.9422 3.51268 18.9643 3.64168C18.9864 3.77068 19.0139 4.06455 18.992 4.29417C18.7426 6.915 17.6633 13.2751 17.1142 16.2105C16.8818 17.4525 16.4244 17.869 15.9815 17.9097C15.0189 17.9983 14.288 17.2736 13.3558 16.6625C11.897 15.7063 11.0729 15.111 9.65691 14.1779C8.02048 13.0995 9.08131 12.5068 10.0139 11.5382C10.258 11.2847 14.4988 7.42729 14.5809 7.07736C14.5912 7.0336 14.6007 6.87046 14.5038 6.78432C14.4069 6.69818 14.2639 6.72764 14.1606 6.75107C14.0143 6.78427 11.6839 8.32459 7.16938 11.372C6.5079 11.8263 5.90875 12.0476 5.37193 12.036C4.78013 12.0232 3.64175 11.7014 2.79548 11.4263C1.75749 11.0889 0.932524 10.9105 1.00436 10.3374C1.04178 10.039 1.45279 9.73374 2.23741 9.42173Z"/></svg><span>Telegram</span><svg class="btn__icon tg__chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.25 7.5L10.25 13.5L16.25 7.5"/></svg></button>
+            <div class="tg__menu" id="tg-menu" role="menu" aria-label="Telegram" hidden>
+              <button class="tg__item tg__copy" type="button" role="menuitem" data-tg-copy="Николаев Николай, Product Designer&#10;https://t.me/niknikstd">
+                <span class="tg__ico" aria-hidden="true"><svg viewBox="0 0 20 20"><g class="tg__link"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M13.174 9.326C11.8835 8.03547 9.81075 8.00327 8.48175 9.22942C8.14345 9.54142 7.61624 9.52025 7.30417 9.18192C6.9921 8.84367 7.01333 8.31646 7.35161 8.00438C9.33533 6.17428 12.4271 6.22197 14.3526 8.14745C16.3269 10.1218 16.3269 13.3229 14.3526 15.2973L11.964 17.6858C9.98958 19.6602 6.78851 19.6602 4.81412 17.6858C2.83973 15.7115 2.83973 12.5104 4.81412 10.536L5.20107 10.149C5.52652 9.82358 6.05415 9.82358 6.37959 10.1491C6.70502 10.4745 6.70502 11.0021 6.37958 11.3276L5.99263 11.7145C4.66913 13.038 4.66913 15.1838 5.99263 16.5073C7.31614 17.8308 9.462 17.8308 10.7855 16.5073L13.174 14.1188C14.4976 12.7953 14.4976 10.6495 13.174 9.326Z"/><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M14.0073 3.49263C12.6838 2.16913 10.538 2.16913 9.2145 3.49263L6.82597 5.88118C5.50246 7.20469 5.50246 9.3505 6.82597 10.674C8.11646 11.9645 10.1892 11.9968 11.5182 10.7706C11.8566 10.4586 12.3837 10.4798 12.6958 10.8181C13.0079 11.1563 12.9867 11.6835 12.6484 11.9956C10.6647 13.8258 7.57293 13.778 5.64746 11.8526C3.67307 9.87817 3.67307 6.67705 5.64746 4.70267L8.036 2.31412C10.0104 0.339737 13.2115 0.339737 15.1859 2.31412C17.1602 4.28851 17.1602 7.48962 15.1859 9.464L14.7989 9.85092C14.4735 10.1764 13.9458 10.1764 13.6204 9.85092C13.295 9.5255 13.295 8.99792 13.6204 8.67242L14.0073 8.28548C15.3309 6.96198 15.3309 4.81614 14.0073 3.49263Z"/></g><g class="tg__done"><circle class="tg__disc" cx="9.79" cy="9.79" r="8.96"/><path class="tg__tick" d="M6.46 9.79L8.96 12.29L13.13 7.29"/></g><g class="tg__fail"><circle class="tg__disc" cx="9.79" cy="9.79" r="8.96"/><path class="tg__bang" d="M9.79 5.6V10.6"/><circle class="tg__dot" cx="9.79" cy="13.7" r="1.05"/></g></svg></span>
+                <span class="tg__labels">
+                  <span class="tg__label tg__label--idle">Скопировать ссылку</span>
+                  <span class="tg__label tg__label--done" aria-hidden="true">Скопировано</span>
+                  <span class="tg__label tg__label--fail" aria-hidden="true">Не&nbsp;скопировалось</span>
+                </span>
+              </button>
+              <p class="tg__manual"><span>Скопируйте вручную: <span class="tg__url">t.me/niknikstd</span></span></p>
+              <a class="tg__item" href="https://t.me/niknikstd" target="_blank" rel="noopener" role="menuitem" data-goal="contact contact_open"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.23741 9.42173C7.06923 7.31658 10.2912 5.92873 11.9033 5.25819C16.5063 3.34367 17.4627 3.0111 18.0861 3.00012C18.2232 2.9977 18.5298 3.03168 18.7284 3.19282C18.8961 3.32888 18.9422 3.51268 18.9643 3.64168C18.9864 3.77068 19.0139 4.06455 18.992 4.29417C18.7426 6.915 17.6633 13.2751 17.1142 16.2105C16.8818 17.4525 16.4244 17.869 15.9815 17.9097C15.0189 17.9983 14.288 17.2736 13.3558 16.6625C11.897 15.7063 11.0729 15.111 9.65691 14.1779C8.02048 13.0995 9.08131 12.5068 10.0139 11.5382C10.258 11.2847 14.4988 7.42729 14.5809 7.07736C14.5912 7.0336 14.6007 6.87046 14.5038 6.78432C14.4069 6.69818 14.2639 6.72764 14.1606 6.75107C14.0143 6.78427 11.6839 8.32459 7.16938 11.372C6.5079 11.8263 5.90875 12.0476 5.37193 12.036C4.78013 12.0232 3.64175 11.7014 2.79548 11.4263C1.75749 11.0889 0.932524 10.9105 1.00436 10.3374C1.04178 10.039 1.45279 9.73374 2.23741 9.42173Z"/></svg><span>Перейти в&nbsp;профиль</span></a>
+              <span class="visually-hidden" aria-live="polite" data-tg-status></span>
+            </div>
+          </div>
+        </div>
+    <!-- /component:floatbar-actions -->
+</nav>
+
+<main class="page">
+
+  <!-- ================= Первый экран (Figma 10098:71931) ================= -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__text">
+      <h1 class="hero__title t-h2">
+        <span class="hero__line">Привет, меня зовут Коля</span>
+        <span class="hero__line">Product Designer <a href="https://www.sravni.ru/" target="_blank" rel="noopener">в&nbsp;<span class="hero__brand">Сравни<img class="hero__logo" src="assets/icons/sravni-logo.svg" alt="" width="45" height="42"></span></a></span>
+        <span class="hero__line">развиваю маркетплейс страховок</span>
+      </h1>
+      <p class="hero__sub t-text">Проектирую web и&nbsp;mobile app интерфейсы 5&nbsp;лет. Сам провожу интервью с&nbsp;пользователями. В&nbsp;Сравни поднял локальную дизайн-систему с&nbsp;нуля и&nbsp;пересобрал старую с&nbsp;дизайн-командой. Работаю в&nbsp;Claude и&nbsp;Higgsfield</p>
+    </div>
+    <div class="hero__media">
+      <div class="video video--pill is-empty" data-file="video/hero.mp4" data-size="800×550">
+        <video class="video__el" playsinline muted loop preload="none" poster="assets/cards/hero-photo.jpg" data-src="assets/video/hero.mp4" data-autoplay-in-view aria-label="Видео на первом экране"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Кейсы (Figma 10098:71951) ================= -->
+  <section class="cases" id="cases">
+    <h2 class="visually-hidden">Кейсы</h2>
+    <a class="show show--wide" id="case-vzr" href="case-vzr.html" style="--zone:380">
+      <div class="show__text">
+        <h3 class="show__title t-sub-xl">Туристическое страхование</h3>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;3,8&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;оформление полиса</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;5,8&nbsp;п.п.</p><p class="show__label t-small">Доля покупок дороже минимальной цены</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;15,3&nbsp;п.п.</p><p class="show__label t-small">Доля выбравших опции на&nbsp;десктопе</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;7,68&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;покупку среди выбравших опции</p></div></div>
+        <span class="show__btn btn btn--primary">Посмотреть</span>
+      </div>
+      <div class="show__media" style="--sw:1012;--sh:600;--pr:957">
+        <div class="show__stage">
+          <div class="show__item show__art" style="--x:32;--y:152;--w:580;--h:326;--mw:84%;--cl:-16.36%;--ct:-28.56%;--cw:120.29%;--ch:159.84%" aria-hidden="true"><picture><source srcset="assets/cards/plane.avif" type="image/avif"><img src="assets/cards/plane.png" alt="" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:405;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/vzr-catalog.avif" type="image/avif"><img src="assets/cards/vzr-catalog.png" alt="Каталог туристического страхования с&nbsp;рекомендациями" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:697;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/vzr-options.avif" type="image/avif"><img src="assets/cards/vzr-options.png" alt="Опции, которые чаще всего добавляют к&nbsp;страховке" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </div>
+    </a>
+    <div class="cases__row">
+    <a class="show show--half" id="case-ipoteka" href="case-ipoteka.html" style="--zone:280">
+      <div class="show__text">
+        <h3 class="show__title t-sub-xl">Страхование ипотеки</h3>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;1,5&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;оплату полиса ипотеки с&nbsp;защитой ремонта и&nbsp;мебели</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;9&nbsp;п.п.</p><p class="show__label t-small">Attach-rate страхования ремонта и&nbsp;мебели</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;2,54&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;авторизацию у&nbsp;клиентов продления</p></div></div>
+        <span class="show__btn btn btn--primary">Посмотреть</span>
+      </div>
+      <div class="show__media" style="--sw:408;--sh:600;--pr:353">
+        <div class="show__stage">
+          <div class="show__item show__art show__art--flip" style="--x:8;--y:302;--w:400;--h:298;--mw:71%" aria-hidden="true"><picture><source srcset="assets/cards/shield-card.avif" type="image/avif"><img src="assets/cards/shield-card.png" alt="" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:93;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/ipoteka-check.avif" type="image/avif"><img src="assets/cards/ipoteka-check.png" alt="Проверка данных перед оплатой полиса ипотеки" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </div>
+    </a>
+    <a class="show show--half" id="case-dom" href="case-dom.html" style="--zone:260">
+      <div class="show__text">
+        <h3 class="show__title t-sub-xl">Хаб «Мой дом» Mobile&nbsp;App</h3>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;0,8&nbsp;п.п.</p><p class="show__label t-small">TR из&nbsp;подарочного полиса в&nbsp;платный</p></div><div class="show__stat"><p class="show__value t-sub-l">x&nbsp;3</p><p class="show__label t-small">Retention первой недели в&nbsp;раздел</p></div></div>
+        <span class="show__btn btn btn--primary">Посмотреть</span>
+      </div>
+      <div class="show__media" style="--sw:428;--sh:600;--pr:373">
+        <div class="show__stage">
+          <div class="show__item show__art" style="--x:13;--y:302;--w:415;--h:298;--mw:78%;--cl:-5.91%;--ct:-20.11%;--cw:175.91%;--ch:163.1%" aria-hidden="true"><picture><source srcset="assets/cards/sofa.avif" type="image/avif"><img src="assets/cards/sofa.png" alt="" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:113;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/dom-hub.avif" type="image/avif"><img src="assets/cards/dom-hub.png" alt="Хаб «Мой дом» с&nbsp;полной защитой квартиры" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Mantle: видео концепта на ткани, логотипы Claude и Higgsfield -->
+    <article class="mantle">
+      <div class="mantle__head">
+        <h3 class="t-sub-xl">Mantle</h3>
+        <div class="mantle__marks">
+          <img class="mark" src="assets/cards/mark-claude.png" alt="Claude" width="24" height="24">
+          <img class="mark" src="assets/cards/mark-higgsfield.png" alt="Higgsfield" width="24" height="24">
+        </div>
+      </div>
+      <div class="mantle__fabric" aria-hidden="true">
+        <div class="mantle__fabric-in"><picture><source srcset="assets/cards/fabric.avif" type="image/avif"><img src="assets/cards/fabric.png" alt="" loading="lazy" decoding="async"></picture></div>
+      </div>
+      <div class="mantle__screen">
+        <div class="video mantle__video is-empty" data-file="uxui/mantle.mp4" data-size="1440×900">
+          <video class="video__el" muted loop playsinline preload="none" poster="assets/uxui/mantle-poster.jpg" data-src="assets/uxui/mantle.mp4" data-autoplay-in-view aria-label="Overcoat by&nbsp;Mantle — концепт шоурума"></video>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= Опыт работы (Figma 8741:12825) ================= -->
+  <section class="exp" id="experience">
+    <h2 class="exp__title t-sub-xl">Опыт работы</h2>
+    <div class="exp__list">
+      <article class="exp__card">
+        <div class="exp__head">
+          <h3 class="exp__company t-sub-xl">Сравни</h3>
+          <div class="exp__period">
+            <p class="exp__role t-subtitle">Product Designer</p>
+            <p class="exp__dates t-small">Сент 2024&nbsp;— н.в.</p>
+          </div>
+        </div>
+        <div class="exp__body t-small">
+          <p>Веду 6&nbsp;продуктов в&nbsp;вебе и&nbsp;приложении. Работаю по&nbsp;Double Diamond: исследую, сам провожу юзабилити-тесты, разбираю обращения в&nbsp;поддержку, проверяю гипотезы A/B-тестами и&nbsp;довожу решения до&nbsp;прода</p>
+          <ul>
+            <li>Запустил с&nbsp;нуля онкострахование и&nbsp;страхование от&nbsp;укуса клеща</li>
+            <li>Клещ в&nbsp;2025&nbsp;году перевыполнил план P&amp;L на&nbsp;20%</li>
+            <li>Пересобрал каталог туристических страховок, конверсия в&nbsp;оформление выросла на&nbsp;3,8&nbsp;п.п.</li>
+            <li>В&nbsp;ипотеке встроил кросс-продажу защиты ремонта и&nbsp;мебели: её&nbsp;стали покупать вместе с&nbsp;основным полисом в&nbsp;8&nbsp;раз чаще</li>
+            <li>Развиваю дизайн-систему юнита. Много работаю с&nbsp;AI: от&nbsp;синтеза исследований до&nbsp;вайбкодинга</li>
+          </ul>
+        </div>
+      </article>
+      <article class="exp__card">
+        <div class="exp__head">
+          <h3 class="exp__company t-sub-xl">Rhino Digital</h3>
+          <div class="exp__period">
+            <p class="exp__role t-subtitle">UX/UI дизайнер</p>
+            <p class="exp__dates t-small">Окт 2023&nbsp;— июнь 2024</p>
+          </div>
+        </div>
+        <div class="exp__body t-small">
+          <p>Креативная студия, где я&nbsp;прокачал визуал и&nbsp;скорость</p>
+          <ul>
+            <li>За&nbsp;9&nbsp;месяцев запустил 20&nbsp;проектов: интернет-магазины, корпоративные сайты, мобильные приложения</li>
+            <li>Два сайта получили награду #madeontilda</li>
+            <li>Каждый проект вёл сам: от&nbsp;архитектуры и&nbsp;прототипа до&nbsp;UI и&nbsp;вёрстки на&nbsp;Tilda</li>
+          </ul>
+        </div>
+      </article>
+      <article class="exp__card">
+        <div class="exp__head">
+          <h3 class="exp__company t-sub-xl">VARFOLOMEEV</h3>
+          <div class="exp__period">
+            <p class="exp__role t-subtitle">UX/UI дизайнер</p>
+            <p class="exp__dates t-small">Окт 2021&nbsp;— сент 2023</p>
+          </div>
+        </div>
+        <div class="exp__body t-small">
+          <p>Онлайн-школа дизайна и&nbsp;вёрстки на&nbsp;Tilda, 2&nbsp;года отвечал за&nbsp;весь её&nbsp;дизайн</p>
+          <ul>
+            <li>Развивал платформу: личный кабинет студента, 6&nbsp;промостраниц, чат-бот с&nbsp;воронкой в&nbsp;Telegram</li>
+            <li>Руководил запуском нового курса по&nbsp;анимации на&nbsp;Tilda, от&nbsp;лендинга до&nbsp;доработок по&nbsp;отзывам студентов</li>
+            <li>С&nbsp;нуля собрал фирменный стиль школы и&nbsp;курировал Behance: 8000+ лайков и&nbsp;70&nbsp;000+ охватов</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- ================= Футер (Figma 8741:12856) ================= -->
+<footer class="footer t-subtitle">
+  <div class="footer__who">
+    <p>Николай Николаев</p>
+    <a class="footer__mail t-small" href="mailto:niknikolaev112@gmail.com">niknikolaev112@gmail.com</a>
+  </div>
+  <p class="footer__note">Сделал в&nbsp;2026 в&nbsp;Claude</p>
+</footer>
+
+<script src="js/analytics.js?v=2026-11-06a" defer></script>
+<script src="js/tg.js?v=2026-11-02h" defer></script>
+<script src="js/ui.js?v=2026-11-02g" defer></script>
+<script src="js/video.js?v=2026-11-06a" defer></script>
+<script src="js/cursor.js?v=2026-11-02g" defer></script>
+</body>
+</html>

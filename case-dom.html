@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Хаб «Мой дом»</title>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<!-- Превью ссылки в Telegram, VK, Slack. og:image и og:url — полными адресами, иначе мессенджеры не покажут картинку -->
+<meta name="description" content="Проектирую web и mobile app интерфейсы 5 лет. Сам провожу интервью с пользователями. В Сравни поднял локальную дизайн-систему с нуля и пересобрал старую с дизайн-командой. Работаю в Claude и Higgsfield">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Хаб «Мой дом»">
+<meta property="og:description" content="Проектирую web и mobile app интерфейсы 5 лет. Сам провожу интервью с пользователями. В Сравни поднял локальную дизайн-систему с нуля и пересобрал старую с дизайн-командой. Работаю в Claude и Higgsfield">
+<meta property="og:url" content="https://niknikolaev.ru/case-dom.html">
+<meta property="og:image" content="https://niknikolaev.ru/assets/site-service/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/google-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/tokens.css?v=2026-11-05c">
+<link rel="stylesheet" href="css/base.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/components.css?v=2026-11-02g">
+<link rel="stylesheet" href="css/showcase.css?v=2026-11-02h">
+<link rel="stylesheet" href="css/case.css?v=2026-11-02k">
+<!-- Yandex.Metrika counter (только на niknikolaev.ru и запасной копии *.github.io: локальные просмотры не попадают в статистику) -->
+<script type="text/javascript">
+  if (/(^|\.)niknikolaev\.ru$|\.github\.io$/.test(location.hostname)) {
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113790440', 'ym');
+
+    ym(113790440, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  }
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113790440" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body class="case">
+
+<!-- ================= Парящее меню (Figma 485:39357) ================= -->
+<nav class="floatbar" aria-label="Разделы сайта">
+    <div class="floatbar__group floatbar__group--burger">
+      <button class="btn btn--icon floatbar__burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Меню"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 4.16634C2.5 3.70611 2.8731 3.33301 3.33333 3.33301H16.6667C17.1269 3.33301 17.5 3.70611 17.5 4.16634C17.5 4.62658 17.1269 4.99967 16.6667 4.99967H3.33333C2.8731 4.99967 2.5 4.62657 2.5 4.16634Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 10.0003C2.5 9.54008 2.8731 9.16699 3.33333 9.16699H16.6667C17.1269 9.16699 17.5 9.54008 17.5 10.0003C17.5 10.4606 17.1269 10.8337 16.6667 10.8337H3.33333C2.8731 10.8337 2.5 10.4606 2.5 10.0003Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 15.8333C2.5 15.3731 2.8731 15 3.33333 15H16.6667C17.1269 15 17.5 15.3731 17.5 15.8333C17.5 16.2936 17.1269 16.6667 16.6667 16.6667H3.33333C2.8731 16.6667 2.5 16.2936 2.5 15.8333Z"/></svg></button>
+    </div>
+    <div class="floatbar__group floatbar__group--nav">
+      <a class="btn floatbar__back" href="index.html" data-back><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M17.7013 11.8159L17.7087 11.667V8.33366C17.7087 7.52824 17.0557 6.87533 16.2503 6.87533H10.2087V4.76513C10.2086 4.13171 9.72699 3.61099 9.10999 3.5485L8.98549 3.54199C8.71533 3.54199 8.45358 3.6312 8.24088 3.79427L8.15299 3.86914L2.79737 8.84233C2.47531 9.14133 2.29199 9.56083 2.29199 10.0003C2.29199 10.4398 2.47531 10.8593 2.79737 11.1583L8.15299 16.1315C8.37924 16.3417 8.67674 16.4587 8.98549 16.4587C9.66099 16.4586 10.2086 15.911 10.2087 15.2355V13.1253H16.2503C17.0055 13.1253 17.6267 12.5514 17.7013 11.8159Z"/></svg><span>Вернуться</span></a>
+    </div>
+    <span class="floatbar__sep" aria-hidden="true"></span>
+    <!-- component:floatbar-actions -->
+    <div class="floatbar__group floatbar__group--actions">
+          <a class="btn" href="resume/" target="_blank" rel="noopener" data-goal="resume"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11.7895 1.88721L11.6666 1.875H8.33328C7.98812 1.875 7.70829 2.15483 7.70829 2.5V8.95833H5.83329C5.59078 8.95833 5.36975 9.09842 5.26688 9.318C5.16403 9.53767 5.1979 9.79742 5.35315 9.98375L9.51986 14.9837C9.63853 15.1261 9.81453 15.2083 9.99994 15.2083C10.1854 15.2083 10.3614 15.1261 10.4801 14.9837L14.6468 9.98375C14.802 9.79742 14.8351 9.53767 14.7322 9.318C14.6293 9.09858 14.409 8.95833 14.1666 8.95833H12.2916V2.5C12.2916 2.33424 12.2257 2.17532 12.1085 2.05811C12.0207 1.97029 11.9095 1.91127 11.7895 1.88721Z"/><path d="M15.6254 16.458C16.0856 16.458 16.4587 16.8311 16.4587 17.2913C16.4587 17.7516 16.0856 18.1247 15.6254 18.1247H4.37533C3.91509 18.1247 3.54199 17.7516 3.54199 17.2913C3.54199 16.8311 3.91509 16.458 4.37533 16.458H15.6254Z"/></svg><span>Резюме</span></a>
+          <div class="tg" data-tg>
+            <button class="btn btn--primary tg__btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="tg-menu"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.23741 9.42173C7.06923 7.31658 10.2912 5.92873 11.9033 5.25819C16.5063 3.34367 17.4627 3.0111 18.0861 3.00012C18.2232 2.9977 18.5298 3.03168 18.7284 3.19282C18.8961 3.32888 18.9422 3.51268 18.9643 3.64168C18.9864 3.77068 19.0139 4.06455 18.992 4.29417C18.7426 6.915 17.6633 13.2751 17.1142 16.2105C16.8818 17.4525 16.4244 17.869 15.9815 17.9097C15.0189 17.9983 14.288 17.2736 13.3558 16.6625C11.897 15.7063 11.0729 15.111 9.65691 14.1779C8.02048 13.0995 9.08131 12.5068 10.0139 11.5382C10.258 11.2847 14.4988 7.42729 14.5809 7.07736C14.5912 7.0336 14.6007 6.87046 14.5038 6.78432C14.4069 6.69818 14.2639 6.72764 14.1606 6.75107C14.0143 6.78427 11.6839 8.32459 7.16938 11.372C6.5079 11.8263 5.90875 12.0476 5.37193 12.036C4.78013 12.0232 3.64175 11.7014 2.79548 11.4263C1.75749 11.0889 0.932524 10.9105 1.00436 10.3374C1.04178 10.039 1.45279 9.73374 2.23741 9.42173Z"/></svg><span>Telegram</span><svg class="btn__icon tg__chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.25 7.5L10.25 13.5L16.25 7.5"/></svg></button>
+            <div class="tg__menu" id="tg-menu" role="menu" aria-label="Telegram" hidden>
+              <button class="tg__item tg__copy" type="button" role="menuitem" data-tg-copy="Николаев Николай, Product Designer&#10;https://t.me/niknikstd">
+                <span class="tg__ico" aria-hidden="true"><svg viewBox="0 0 20 20"><g class="tg__link"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M13.174 9.326C11.8835 8.03547 9.81075 8.00327 8.48175 9.22942C8.14345 9.54142 7.61624 9.52025 7.30417 9.18192C6.9921 8.84367 7.01333 8.31646 7.35161 8.00438C9.33533 6.17428 12.4271 6.22197 14.3526 8.14745C16.3269 10.1218 16.3269 13.3229 14.3526 15.2973L11.964 17.6858C9.98958 19.6602 6.78851 19.6602 4.81412 17.6858C2.83973 15.7115 2.83973 12.5104 4.81412 10.536L5.20107 10.149C5.52652 9.82358 6.05415 9.82358 6.37959 10.1491C6.70502 10.4745 6.70502 11.0021 6.37958 11.3276L5.99263 11.7145C4.66913 13.038 4.66913 15.1838 5.99263 16.5073C7.31614 17.8308 9.462 17.8308 10.7855 16.5073L13.174 14.1188C14.4976 12.7953 14.4976 10.6495 13.174 9.326Z"/><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M14.0073 3.49263C12.6838 2.16913 10.538 2.16913 9.2145 3.49263L6.82597 5.88118C5.50246 7.20469 5.50246 9.3505 6.82597 10.674C8.11646 11.9645 10.1892 11.9968 11.5182 10.7706C11.8566 10.4586 12.3837 10.4798 12.6958 10.8181C13.0079 11.1563 12.9867 11.6835 12.6484 11.9956C10.6647 13.8258 7.57293 13.778 5.64746 11.8526C3.67307 9.87817 3.67307 6.67705 5.64746 4.70267L8.036 2.31412C10.0104 0.339737 13.2115 0.339737 15.1859 2.31412C17.1602 4.28851 17.1602 7.48962 15.1859 9.464L14.7989 9.85092C14.4735 10.1764 13.9458 10.1764 13.6204 9.85092C13.295 9.5255 13.295 8.99792 13.6204 8.67242L14.0073 8.28548C15.3309 6.96198 15.3309 4.81614 14.0073 3.49263Z"/></g><g class="tg__done"><circle class="tg__disc" cx="9.79" cy="9.79" r="8.96"/><path class="tg__tick" d="M6.46 9.79L8.96 12.29L13.13 7.29"/></g><g class="tg__fail"><circle class="tg__disc" cx="9.79" cy="9.79" r="8.96"/><path class="tg__bang" d="M9.79 5.6V10.6"/><circle class="tg__dot" cx="9.79" cy="13.7" r="1.05"/></g></svg></span>
+                <span class="tg__labels">
+                  <span class="tg__label tg__label--idle">Скопировать ссылку</span>
+                  <span class="tg__label tg__label--done" aria-hidden="true">Скопировано</span>
+                  <span class="tg__label tg__label--fail" aria-hidden="true">Не&nbsp;скопировалось</span>
+                </span>
+              </button>
+              <p class="tg__manual"><span>Скопируйте вручную: <span class="tg__url">t.me/niknikstd</span></span></p>
+              <a class="tg__item" href="https://t.me/niknikstd" target="_blank" rel="noopener" role="menuitem" data-goal="contact contact_open"><svg class="btn__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.23741 9.42173C7.06923 7.31658 10.2912 5.92873 11.9033 5.25819C16.5063 3.34367 17.4627 3.0111 18.0861 3.00012C18.2232 2.9977 18.5298 3.03168 18.7284 3.19282C18.8961 3.32888 18.9422 3.51268 18.9643 3.64168C18.9864 3.77068 19.0139 4.06455 18.992 4.29417C18.7426 6.915 17.6633 13.2751 17.1142 16.2105C16.8818 17.4525 16.4244 17.869 15.9815 17.9097C15.0189 17.9983 14.288 17.2736 13.3558 16.6625C11.897 15.7063 11.0729 15.111 9.65691 14.1779C8.02048 13.0995 9.08131 12.5068 10.0139 11.5382C10.258 11.2847 14.4988 7.42729 14.5809 7.07736C14.5912 7.0336 14.6007 6.87046 14.5038 6.78432C14.4069 6.69818 14.2639 6.72764 14.1606 6.75107C14.0143 6.78427 11.6839 8.32459 7.16938 11.372C6.5079 11.8263 5.90875 12.0476 5.37193 12.036C4.78013 12.0232 3.64175 11.7014 2.79548 11.4263C1.75749 11.0889 0.932524 10.9105 1.00436 10.3374C1.04178 10.039 1.45279 9.73374 2.23741 9.42173Z"/></svg><span>Перейти в&nbsp;профиль</span></a>
+              <span class="visually-hidden" aria-live="polite" data-tg-status></span>
+            </div>
+          </div>
+        </div>
+    <!-- /component:floatbar-actions -->
+
+    <!-- Меню на телефоне (Figma 517:39835): вырастает из бургера -->
+    <div class="menu-pop" id="site-menu" inert>
+      <ul class="menu-pop__links">
+        <li class="menu-pop__item" style="--i:0"><a class="menu-pop__link" href="index.html#cases">Кейсы</a></li>
+      </ul>
+      <div class="menu-pop__contact menu-pop__item" style="--i:1">
+        <p class="menu-pop__label t-xs">почта для&nbsp;связи</p>
+        <a class="menu-pop__mail t-small" href="mailto:niknikolaev112@gmail.com">niknikolaev112@gmail.com</a>
+      </div>
+    </div>
+</nav>
+
+<main class="page">
+  <!-- ================= Обложка ================= -->
+  <header class="cover">
+    <div class="show" style="--zone:380">
+      <div class="show__text">
+        <h1 class="show__title t-sub-xl">Хаб «Мой дом» Mobile&nbsp;App</h1>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;0,8&nbsp;п.п.</p><p class="show__label t-small">TR из&nbsp;подарочного полиса в&nbsp;платный</p></div><div class="show__stat"><p class="show__value t-sub-l">x&nbsp;3</p><p class="show__label t-small">Retention первой недели в&nbsp;раздел</p></div></div>
+      </div>
+      <div class="show__media" style="--sw:1012;--sh:600;--pr:957">
+        <div class="show__stage">
+          <div class="show__item show__art" style="--x:41;--y:128;--w:598;--h:345;--mw:85%;--cl:0.25%;--ct:-18.13%;--cw:113.76%;--ch:131.6%" aria-hidden="true"><picture><source srcset="assets/cards/sofa-cover.avif" type="image/avif"><img src="assets/cards/sofa-cover.png" alt="" decoding="async"></picture></div><div class="show__item show__phone" style="--x:403;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/dom-hub.avif" type="image/avif"><img src="assets/cards/dom-hub.png" alt="Хаб «Мой дом» с&nbsp;полной защитой квартиры" decoding="async"></picture></div><div class="show__item show__phone" style="--x:697;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/dom-price.avif" type="image/avif"><img src="assets/cards/dom-price.png" alt="Рыночная стоимость квартиры и&nbsp;сколько одобрят банки" decoding="async"></picture></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ================= Тело кейса ================= -->
+  <div class="case-body">
+    <nav class="case-nav" aria-label="Разделы кейса">
+      <ul class="case-nav__list">
+            <li><a class="case-nav__link" href="#about" aria-current="true">О&nbsp;проекте</a></li>
+            <li><a class="case-nav__link" href="#problem">Проблематика</a></li>
+            <li><a class="case-nav__link" href="#hub">Как поменялся хаб</a></li>
+            <li><a class="case-nav__link" href="#start">Добавление адреса</a></li>
+            <li><a class="case-nav__link" href="#sofa">Имя и&nbsp;диван</a></li>
+            <li><a class="case-nav__link" href="#price">Рыночная стоимость</a></li>
+            <li><a class="case-nav__link" href="#mortgage">Ипотека</a></li>
+            <li><a class="case-nav__link" href="#states">Состояния хаба</a></li>
+            <li><a class="case-nav__link" href="#homes">Несколько квартир</a></li>
+            <li><a class="case-nav__link" href="#results">Результаты</a></li>
+      </ul>
+    </nav>
+    <div class="case-main">
+      <!-- 00 О проекте: что сделал и с кем -->
+      <section class="chapter" id="about">
+        <div class="block project-about">
+          <p class="project-about__lead t-h2">Спроектировал раздел в&nbsp;приложении Сравни, где клиент управляет страховками по&nbsp;адресу своей квартиры</p>
+          <div class="facts">
+          <div class="fact-pair"><p class="fact-pair__label t-small">Команда</p><p class="t-text">Product Owner, Analytics, Mobile Developers, Design Team</p></div>
+          <div class="fact-pair"><p class="fact-pair__label t-small">Скоуп</p><p class="t-text">Discovery, UX/UI, Prototyping, Delivery, UX Testing</p></div>
+          <div class="fact-pair"><p class="fact-pair__label t-small">Моя роль</p><p class="t-text">Product Designer</p></div>
+          <div class="fact-pair"><p class="fact-pair__label t-small">Год</p><p class="t-text">2025</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 Проблематика -->
+      <section class="chapter" id="problem">
+        <div class="block">
+          <h2 class="t-h2">В&nbsp;раздел адреса возвращались меньше 4&nbsp;клиентов из&nbsp;100. У&nbsp;нас был один шанс предложить защиту квартиры</h2>
+          <div class="block__text block__text--narrow">
+            <p class="t-text">Клиенты страховки ипотеки получают в&nbsp;приложении раздел со&nbsp;своим адресом. Части из&nbsp;них мы&nbsp;дарим полис от&nbsp;залива соседей</p>
+            <p class="t-text">Через неделю в&nbsp;раздел возвращались меньше 4&nbsp;клиентов из&nbsp;100. Это нормально: полис продлевают раз в&nbsp;год. Поэтому первый визит может оказаться последним</p>
+            <p class="t-text">Подарочный полис покрывает до&nbsp;50&nbsp;000&nbsp;₽, а&nbsp;полная защита квартиры за&nbsp;990&nbsp;₽ покрывает до&nbsp;800&nbsp;000&nbsp;₽. С&nbsp;первого визита нужно было убедить клиента сменить подарок на&nbsp;полную защиту, а&nbsp;тем, у&nbsp;кого подарка нет, предложить её&nbsp;с&nbsp;нуля</p>
+          </div>
+          <div class="facts facts--metrics">
+            <div class="fact-pair"><p class="fact-pair__label fact-pair__label--soft t-small">Целевая метрика</p><p class="t-text">TR продукта ИФЛ</p></div>
+            <div class="fact-pair"><p class="fact-pair__label fact-pair__label--soft t-small">Вторичная метрика</p><p class="t-text">Retention первой недели в&nbsp;раздел</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Как поменялся хаб: стало / было -->
+      <section class="chapter" id="hub">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Вынес хаб на&nbsp;главную и&nbsp;встроил в&nbsp;него допродажу защиты квартиры</h2>
+            <div class="stat-cards stat-cards--2"><div class="stat-card"><p class="stat-card__value">+&nbsp;0,8&nbsp;п.п.</p><p class="stat-card__label t-text">TR из&nbsp;подарочного полиса в&nbsp;платный</p></div><div class="stat-card"><p class="stat-card__value">x&nbsp;3</p><p class="stat-card__label t-text">Retention первой недели в&nbsp;раздел</p></div></div>
+          </div>
+          <figure class="figure">
+            <div class="compare">
+            <div class="segment" data-value="after" role="group" aria-label="Хаб: стало и было">
+              <button class="segment__btn" type="button" data-value="after" aria-pressed="true">Стало</button>
+              <button class="segment__btn" type="button" data-value="before" aria-pressed="false">Было</button>
+            </div>
+            <div class="compare__panes">
+              <div class="compare__pane is-active" data-value="after"><div class="plate" style="--pw:848;--ph:1047"><div class="slot slot--phone" style="--x:102;--y:40;--w:302;--h:622.5" data-file="hub-main.png" data-size="604×1245"><img src="assets/case-dom/hub-main.png" alt="Главная приложения: виджет «Мой дом»" loading="lazy"></div><div class="slot slot--phone slot--shadow" style="--x:444;--y:40;--w:302;--h:966.5" data-file="hub-after.png" data-size="604×1933"><img src="assets/case-dom/hub-after.png" alt="Новый хаб «Мой дом»" loading="lazy"></div></div></div>
+              <div class="compare__pane" data-value="before"><div class="plate" style="--pw:848;--ph:790"><div class="slot slot--phone slot--shadow" style="--x:273;--y:29;--w:302;--h:732" data-file="hub-before.png" data-size="604×1464"><img src="assets/case-dom/hub-before.png" alt="Старый экран «Адреса»" loading="lazy"></div></div></div>
+            </div>
+            </div>
+            <figcaption class="cap"><span class="cap__pane" data-value="after">Как хаб выглядит сейчас</span><span class="cap__pane" data-value="before">Как хаб выглядел раньше</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 03 Добавление адреса: главная → пустой хаб → адрес → хаб -->
+      <section class="chapter" id="start">
+        <div class="block">
+          <h2 class="t-h2">Спроектировал флоу добавления квартиры</h2>
+          <figure class="figure">
+            <div class="plate slider slider--row slider--flow" style="--pw:848;--ph:774">
+              <div class="arrows" role="group" aria-label="Первый вход"><button class="arrows__btn arrows__btn--prev" type="button" aria-label="Назад"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="arrows__btn arrows__btn--next" type="button" aria-label="Вперёд"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+              <div class="slider__track">
+                <!-- Лента 2256 px: шаг — один айфон (352 px), в кадре два экрана и край третьего -->
+                <div class="slider__canvas" data-steps="5" style="flex-basis:266.04%;--pw:2256;--sw:352">
+                  <div class="slot slot--phone" style="--x:46;--y:84;--w:302;--h:622.5" data-file="start-1.png" data-size="604×1245"><img src="assets/case-dom/start-1.png" alt="Главная: виджет «Мой дом» без полисов" loading="lazy"></div><div class="slot slot--phone" style="--x:398;--y:84;--w:302;--h:622.5" data-file="start-2.png" data-size="604×1245"><img src="assets/case-dom/start-2.png" alt="Пустой хаб «Новый адрес»" loading="lazy"></div><div class="slot slot--phone" style="--x:750;--y:84;--w:302;--h:622.5" data-file="start-3.png" data-size="604×1245"><img src="assets/case-dom/start-3.png" alt="Шторка: укажите адрес" loading="lazy"></div><div class="slot slot--phone" style="--x:1102;--y:84;--w:302;--h:622.5" data-file="start-4.png" data-size="604×1245"><img src="assets/case-dom/start-4.png" alt="Ввод адреса и подсказки" loading="lazy"></div><div class="slot slot--phone" style="--x:1454;--y:84;--w:302;--h:622.5" data-file="start-5.png" data-size="604×1245"><img src="assets/case-dom/start-5.png" alt="Адрес выбран" loading="lazy"></div><div class="slot slot--phone" style="--x:1806;--y:84;--w:302;--h:622.5" data-file="start-6.png" data-size="604×1245"><img src="assets/case-dom/start-6.png" alt="Хаб собран: диван, вопрос про ипотеку, страховки" loading="lazy"></div>
+                  <svg class="connector connector--dark connector--s0" style="--x:225;--y:254.5;--w:180;--h:260.5" aria-hidden="true" focusable="false" viewBox="0 0 180 260.5" fill="none"><circle cx="8" cy="244.5" r="5.33" fill="currentColor"/><path d="M8 244.5L8.0 250.5Q8 252.5 10.0 252.5L132.0 252.5Q148 252.5 148.0 236.5L148.0 23.0Q148 8.0 163.0 8.0L172 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M165.0 15.0L172 8.0L165.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s1" style="--x:667.5;--y:242.1;--w:89.5;--h:112.9" aria-hidden="true" focusable="false" viewBox="0 0 89.5 112.9" fill="none"><circle cx="8.0" cy="104.9" r="5.33" fill="currentColor"/><path d="M8.0 104.9L41.5 104.9Q57.5 104.9 57.5 88.9L57.5 23.0Q57.5 8.0 72.5 8.0L81.5 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M74.5 15.0L81.5 8.0L74.5 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s2" style="--x:1019;--y:246.25;--w:90;--h:16.0" aria-hidden="true" focusable="false" viewBox="0 0 90 16.0" fill="none"><circle cx="8" cy="8.0" r="5.33" fill="currentColor"/><path d="M8 8.0L82 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M75.0 15.0L82 8.0L75.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s3" style="--x:1338;--y:244.5;--w:123;--h:46.5" aria-hidden="true" focusable="false" viewBox="0 0 123 46.5" fill="none"><circle cx="8" cy="38.5" r="5.33" fill="currentColor"/><path d="M8 38.5L75.75 38.5Q91 38.5 91.0 23.25L91.0 23.0Q91 8.0 106.0 8.0L115 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M108.0 15.0L115 8.0L108.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s4" style="--x:1723.5;--y:290.9;--w:89.5;--h:359.6" aria-hidden="true" focusable="false" viewBox="0 0 89.5 359.6" fill="none"><circle cx="8.0" cy="351.6" r="5.33" fill="currentColor"/><path d="M8.0 351.6L41.5 351.6Q57.5 351.6 57.5 335.6L57.5 23.0Q57.5 8.0 72.5 8.0L81.5 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M74.5 15.0L81.5 8.0L74.5 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+            <figcaption class="cap">Флоу добавления адреса</figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- 04 Диван и название -->
+      <section class="chapter" id="sofa">
+        <div class="block">
+          <h2 class="t-h2">Своей квартире можно дать имя и&nbsp;выбрать диванчик</h2>
+          <figure class="figure">
+            <div class="plate" style="--pw:848;--ph:1378">
+              <div class="slot slot--phone" style="--x:93;--y:36;--w:303;--h:624.6" data-file="sofa-1.png" data-size="604×1245"><img src="assets/case-dom/sofa-1.png" alt="Шторка: название и карусель диванов" loading="lazy"></div>
+              <div class="slot slot--phone" style="--x:453;--y:36;--w:303;--h:624.6" data-file="sofa-2.png" data-size="604×1245"><img src="assets/case-dom/sofa-2.png" alt="Выбран другой диван" loading="lazy"></div>
+              <div class="slot slot--phone" style="--x:93;--y:717;--w:303;--h:624.6" data-file="sofa-3.png" data-size="604×1245"><img src="assets/case-dom/sofa-3.png" alt="Название «Берлога»" loading="lazy"></div>
+              <div class="slot slot--phone" style="--x:453;--y:717;--w:303;--h:624.6" data-file="sofa-4.png" data-size="604×1245"><img src="assets/case-dom/sofa-4.png" alt="Хаб с новым диваном и названием" loading="lazy"></div>
+              <svg class="connector connector--dark" style="--x:212.42;--y:430.23;--w:248.38;--h:140.01" aria-hidden="true" focusable="false" viewBox="0 0 248.38 140.01" fill="none"><circle cx="8.0" cy="121.47" r="5.33" fill="currentColor"/><path d="M8.0 121.47L8.0 127.47Q8.0 132.01 12.54 132.01L197.48 132.01Q213.48 132.01 213.48 116.01L213.48 24.0Q213.48 8.0 229.48 8.0L240.38 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M233.38 15.0L240.38 8.0L233.38 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark" style="--x:236.5;--y:346.8;--w:547.5;--h:377.2" aria-hidden="true" focusable="false" viewBox="0 0 547.5 377.2" fill="none"><circle cx="423.18" cy="8.0" r="5.33" fill="currentColor"/><path d="M423.18 8.0L523.5 8.0Q539.5 8.0 539.5 24.0L539.5 323.7Q539.5 339.7 523.5 339.7L24.0 339.7Q8.0 339.7 8.0 355.7L8.0 369.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.0 362.2L8.0 369.2L15.0 362.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark" style="--x:363.42;--y:924.61;--w:97.38;--h:153.56" aria-hidden="true" focusable="false" viewBox="0 0 97.38 153.56" fill="none"><circle cx="8.0" cy="145.56" r="5.33" fill="currentColor"/><path d="M8.0 145.56L46.48 145.56Q62.48 145.56 62.48 129.56L62.48 24.0Q62.48 8.0 78.48 8.0L89.38 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M82.38 15.0L89.38 8.0L82.38 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <figcaption class="cap">Выбор дивана и&nbsp;названия квартиры</figcaption>
+          </figure>
+        </div>
+        <div class="block">
+          <h2 class="t-h2">Нагенерил 6&nbsp;диванчиков в&nbsp;разных стилях</h2>
+          <div class="illus illus--sofas"><div class="illus__card"><div class="slot slot--flow slot--cover" style="--w:500;--h:333" data-file="sofa-green.jpg" data-size="1000×667"><img src="assets/case-dom/sofa-green.jpg" alt="Зелёный диван" loading="lazy"></div></div><div class="illus__card"><div class="slot slot--flow slot--cover" style="--w:500;--h:333" data-file="sofa-boucle.jpg" data-size="1000×667"><img src="assets/case-dom/sofa-boucle.jpg" alt="Диван из букле" loading="lazy"></div></div><div class="illus__card"><div class="slot slot--flow slot--cover" style="--w:500;--h:333" data-file="sofa-pattern.jpg" data-size="1000×667"><img src="assets/case-dom/sofa-pattern.jpg" alt="Диван с орнаментом" loading="lazy"></div></div><div class="illus__card"><div class="slot slot--flow slot--cover" style="--w:500;--h:333" data-file="sofa-chester.jpg" data-size="1000×667"><img src="assets/case-dom/sofa-chester.jpg" alt="Кожаный честерфилд" loading="lazy"></div></div><div class="illus__card"><div class="slot slot--flow slot--cover" style="--w:500;--h:333" data-file="sofa-velvet.jpg" data-size="1000×667"><img src="assets/case-dom/sofa-velvet.jpg" alt="Вельветовый диван" loading="lazy"></div></div><div class="illus__card"><div class="slot slot--flow slot--cover" style="--w:500;--h:333" data-file="sofa-memphis.jpg" data-size="1000×667"><img src="assets/case-dom/sofa-memphis.jpg" alt="Диван в стиле мемфис" loading="lazy"></div></div></div>
+        </div>
+      </section>
+
+      <!-- 05 Рыночная стоимость -->
+      <section class="chapter" id="price">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Показал, сколько сейчас стоит квартира</h2>
+            <p class="t-text">Рядом с&nbsp;оценкой предложил узнать, сколько одобрят банки. Так раздел ведёт клиента в&nbsp;кредитные продукты другой команды</p>
+          </div>
+          <figure class="figure">
+            <div class="plate" style="--pw:848;--ph:780"><div class="slot slot--phone slot--shadow" style="--x:102;--y:48;--w:302;--h:683.5" data-file="price-1.png" data-size="604×1367"><img src="assets/case-dom/price-1.png" alt="Хаб: карточка рыночной стоимости" loading="lazy"></div><div class="slot slot--phone" style="--x:444;--y:48;--w:302;--h:622.5" data-file="price-2.png" data-size="604×1245"><img src="assets/case-dom/price-2.png" alt="Шторка: оценка, диапазон, «Сколько одобрят», предодобрение" loading="lazy"></div><svg class="connector connector--dark" style="--x:372;--y:196.17;--w:79;--h:483.58" aria-hidden="true" focusable="false" viewBox="0 0 79 483.58" fill="none"><circle cx="8" cy="475.58" r="5.33" fill="currentColor"/><path d="M8 475.58L36.0 475.58Q52 475.58 52.0 459.58L52.0 18.0Q52 8.0 62.0 8.0L71 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M64.0 15.0L71 8.0L64.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <figcaption class="cap">Рыночная стоимость квартиры</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 06 Ипотека: «Да» → банк → месяц → остаток → хаб -->
+      <section class="chapter" id="mortgage">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Тактично спросил про&nbsp;ипотеку</h2>
+            <p class="t-text">Из&nbsp;кредитного рейтинга мы&nbsp;знали, что&nbsp;у&nbsp;клиента есть ипотека, но&nbsp;не&nbsp;знали банк. Поэтому спросили прямо в&nbsp;разделе: в&nbsp;ипотеке ли&nbsp;квартира и&nbsp;в&nbsp;каком банке. Так клиент готов к&nbsp;страхованию ипотеки, а&nbsp;под&nbsp;его банк мы&nbsp;подберём полис</p>
+          </div>
+          <figure class="figure">
+            <div class="plate slider slider--row slider--flow" style="--pw:848;--ph:774">
+              <div class="arrows" role="group" aria-label="Ипотека"><button class="arrows__btn arrows__btn--prev" type="button" aria-label="Назад"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="arrows__btn arrows__btn--next" type="button" aria-label="Вперёд"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+              <div class="slider__track">
+                <!-- Лента 2608 px: шаг — один айфон (352 px), в кадре два экрана и край третьего -->
+                <div class="slider__canvas" data-steps="6" style="flex-basis:307.55%;--pw:2608;--sw:352">
+                  <div class="slot slot--phone" style="--x:46;--y:84;--w:302;--h:622.5" data-file="mortgage-1.png" data-size="604×1245"><img src="assets/case-dom/mortgage-1.png" alt="Хаб: «Эта квартира в ипотеке?» — Да" loading="lazy"></div><div class="slot slot--phone" style="--x:398;--y:84;--w:302;--h:622.5" data-file="mortgage-2.png" data-size="604×1245"><img src="assets/case-dom/mortgage-2.png" alt="В каком банке ипотека" loading="lazy"></div><div class="slot slot--phone" style="--x:750;--y:84;--w:302;--h:622.5" data-file="mortgage-3.png" data-size="604×1245"><img src="assets/case-dom/mortgage-3.png" alt="Месяц, когда оформили ипотеку" loading="lazy"></div><div class="slot slot--phone" style="--x:1102;--y:84;--w:302;--h:622.5" data-file="mortgage-4.png" data-size="604×1245"><img src="assets/case-dom/mortgage-4.png" alt="Остаток и месяц заполнены, «Другой банк»" loading="lazy"></div><div class="slot slot--phone" style="--x:1454;--y:84;--w:302;--h:622.5" data-file="mortgage-5.png" data-size="604×1245"><img src="assets/case-dom/mortgage-5.png" alt="Список банков с поиском" loading="lazy"></div><div class="slot slot--phone" style="--x:1806;--y:84;--w:302;--h:622.5" data-file="mortgage-6.png" data-size="604×1245"><img src="assets/case-dom/mortgage-6.png" alt="Банк выбран" loading="lazy"></div><div class="slot slot--phone" style="--x:2158;--y:84;--w:302;--h:622.5" data-file="mortgage-7.png" data-size="604×1245"><img src="assets/case-dom/mortgage-7.png" alt="Хаб с блоком «Ипотека» и «Страховка для банка»" loading="lazy"></div>
+                  <svg class="connector connector--dark connector--s0" style="--x:305;--y:187.6;--w:100;--h:231.65" aria-hidden="true" focusable="false" viewBox="0 0 100 231.65" fill="none"><circle cx="8" cy="223.65" r="5.33" fill="currentColor"/><path d="M8 223.65L52.0 223.65Q68 223.65 68.0 207.65L68.0 23.0Q68 8.0 83.0 8.0L92 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M85.0 15.0L92 8.0L85.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s1" style="--x:667.5;--y:171.1;--w:89.5;--h:213.4" aria-hidden="true" focusable="false" viewBox="0 0 89.5 213.4" fill="none"><circle cx="8.0" cy="205.4" r="5.33" fill="currentColor"/><path d="M8.0 205.4L41.5 205.4Q57.5 205.4 57.5 189.4L57.5 23.0Q57.5 8.0 72.5 8.0L81.5 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M74.5 15.0L81.5 8.0L74.5 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s2" style="--x:1019.5;--y:251.75;--w:89.5;--h:137.85" aria-hidden="true" focusable="false" viewBox="0 0 89.5 137.85" fill="none"><circle cx="8.0" cy="8.0" r="5.33" fill="currentColor"/><path d="M8.0 8.0L41.5 8.0Q57.5 8.0 57.5 24.0L57.5 114.85Q57.5 129.85 72.5 129.85L81.5 129.85" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M74.5 136.85L81.5 129.85L74.5 122.85" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s3" style="--x:1368;--y:176.2;--w:93;--h:95.8" aria-hidden="true" focusable="false" viewBox="0 0 93 95.8" fill="none"><circle cx="8" cy="87.8" r="5.33" fill="currentColor"/><path d="M8 87.8L45.0 87.8Q61 87.8 61.0 71.8L61.0 23.0Q61 8.0 76.0 8.0L85 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M78.0 15.0L85 8.0L78.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s4" style="--x:1612;--y:262.4;--w:201;--h:345.6" aria-hidden="true" focusable="false" viewBox="0 0 201 345.6" fill="none"><circle cx="8" cy="337.6" r="5.33" fill="currentColor"/><path d="M8 337.6L153.0 337.6Q169 337.6 169.0 321.6L169.0 23.0Q169 8.0 184.0 8.0L193 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M186.0 15.0L193 8.0L186.0 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark connector--s5" style="--x:2075.5;--y:368.1;--w:89.5;--h:282.4" aria-hidden="true" focusable="false" viewBox="0 0 89.5 282.4" fill="none"><circle cx="8.0" cy="274.4" r="5.33" fill="currentColor"/><path d="M8.0 274.4L41.5 274.4Q57.5 274.4 57.5 258.4L57.5 23.0Q57.5 8.0 72.5 8.0L81.5 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M74.5 15.0L81.5 8.0L74.5 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+            <figcaption class="cap">Добавление ипотеки</figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- 07 Состояния хаба: четыре экрана 2×2, целиком, длинный экран с тенью -->
+      <section class="chapter" id="states">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">Хаб подстраивается под&nbsp;полисы клиента</h2>
+            <p class="t-text">Без&nbsp;полисов хаб предлагает страховку для&nbsp;банка и&nbsp;защиту квартиры. Когда защищено всё, он&nbsp;просто показывает полисы, ничего не&nbsp;продаёт. Если у&nbsp;клиента только подарок от&nbsp;залива соседей, рядом кнопка «Улучшить от&nbsp;990&nbsp;₽ на&nbsp;год». А&nbsp;за&nbsp;несколько дней до&nbsp;конца полиса появляется счётчик и&nbsp;кешбэк 10&nbsp;% на&nbsp;продление</p>
+          </div>
+          <div class="pair pair--grid">
+            <figure class="figure">
+              <div class="plate" style="--pw:416;--ph:990"><div class="slot slot--phone slot--shadow" style="--x:57;--y:32;--w:302;--h:869" data-file="state-1.png" data-size="604×1738"><img src="assets/case-dom/state-1.png" alt="Нет полисов" loading="lazy"></div></div>
+              <figcaption class="cap">Нет полисов</figcaption>
+            </figure>
+            <figure class="figure">
+              <div class="plate" style="--pw:416;--ph:990"><div class="slot slot--phone slot--shadow" style="--x:57;--y:32;--w:302;--h:926" data-file="state-2.png" data-size="604×1852"><img src="assets/case-dom/state-2.png" alt="Полная защита" loading="lazy"></div></div>
+              <figcaption class="cap">Полная защита</figcaption>
+            </figure>
+            <figure class="figure">
+              <div class="plate" style="--pw:416;--ph:1116"><div class="slot slot--phone slot--shadow" style="--x:57;--y:32;--w:302;--h:966.5" data-file="state-3.png" data-size="604×1933"><img src="assets/case-dom/state-3.png" alt="Есть подарочный полис" loading="lazy"></div></div>
+              <figcaption class="cap">Есть подарочный полис</figcaption>
+            </figure>
+            <figure class="figure">
+              <div class="plate" style="--pw:416;--ph:1116"><div class="slot slot--phone slot--shadow" style="--x:57;--y:32;--w:302;--h:1052" data-file="state-4.png" data-size="604×2104"><img src="assets/case-dom/state-4.png" alt="Полис скоро истекает" loading="lazy"></div></div>
+              <figcaption class="cap">Полис скоро истекает</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 Несколько квартир -->
+      <section class="chapter" id="homes">
+        <div class="block">
+          <div class="block__head">
+            <h2 class="t-h2">У&nbsp;каждой квартиры свой хаб</h2>
+            <p class="t-text">Квартиры листаются свайпом. Хаб каждой показывает её&nbsp;ипотеку, полисы и&nbsp;предложения. В&nbsp;конце карусели можно добавить новый адрес</p>
+          </div>
+          <figure class="figure">
+            <div class="plate" style="--pw:848;--ph:570"><div class="slot slot--phone" style="--x:47;--y:48;--w:230;--h:474.09" data-file="homes-1.png" data-size="604×1245"><img src="assets/case-dom/homes-1.png" alt="Квартира «Берлога»" loading="lazy"></div><div class="slot slot--phone" style="--x:309;--y:48;--w:230;--h:474.09" data-file="homes-2.png" data-size="604×1245"><img src="assets/case-dom/homes-2.png" alt="Квартира «Хата»" loading="lazy"></div><div class="slot slot--phone" style="--x:571;--y:48;--w:230;--h:474.09" data-file="homes-3.png" data-size="604×1245"><img src="assets/case-dom/homes-3.png" alt="Карточка «Новый адрес»" loading="lazy"></div><svg class="connector connector--dark" style="--x:251.86;--y:162.43;--w:64.14;--h:16.0" aria-hidden="true" focusable="false" viewBox="0 0 64.14 16.0" fill="none"><circle cx="8.0" cy="8.0" r="5.33" fill="currentColor"/><path d="M8.0 8.0L56.14 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M49.14 15.0L56.14 8.0L49.14 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="connector connector--dark" style="--x:513.86;--y:162.43;--w:64.14;--h:16.0" aria-hidden="true" focusable="false" viewBox="0 0 64.14 16.0" fill="none"><circle cx="8.0" cy="8.0" r="5.33" fill="currentColor"/><path d="M8.0 8.0L56.14 8.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M49.14 15.0L56.14 8.0L49.14 1.0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <figcaption class="cap">Квартиры листаются свайпом</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 09 Результаты посчитали с помощью метода Causal Impact -->
+      <section class="chapter" id="results">
+        <div class="block">
+          <h2 class="t-h2">Результаты посчитали с&nbsp;помощью метода Causal Impact</h2>
+          <div class="stat-cards stat-cards--2"><div class="stat-card"><p class="stat-card__value">+&nbsp;0,8&nbsp;п.п.</p><p class="stat-card__label t-text">TR из&nbsp;подарочного полиса в&nbsp;платный</p></div><div class="stat-card"><p class="stat-card__value">x&nbsp;3</p><p class="stat-card__label t-text">Retention первой недели в&nbsp;раздел</p></div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <!-- Следующий кейс: витрина ВЗР, как обложка кейса -->
+  <nav class="next-case" aria-label="Следующий кейс">
+    <a class="show" href="case-vzr.html" style="--zone:380">
+      <div class="show__text">
+        <h2 class="show__title t-sub-xl">Туристическое страхование</h2>
+        <div class="show__stats"><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;3,8&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;оформление полиса</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;5,8&nbsp;п.п.</p><p class="show__label t-small">Доля покупок дороже минимальной цены</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;15,3&nbsp;п.п.</p><p class="show__label t-small">Доля выбравших опции на&nbsp;десктопе</p></div><div class="show__stat"><p class="show__value t-sub-l">+&nbsp;7,68&nbsp;п.п.</p><p class="show__label t-small">CR в&nbsp;покупку среди выбравших опции</p></div></div>
+        <span class="show__btn btn btn--primary">Посмотреть</span>
+      </div>
+      <div class="show__media" style="--sw:1012;--sh:600;--pr:957">
+        <div class="show__stage">
+          <div class="show__item show__art" style="--x:54;--y:152;--w:580;--h:326;--mw:84%;--cl:-16.36%;--ct:-28.56%;--cw:120.29%;--ch:159.84%" aria-hidden="true"><picture><source srcset="assets/cards/plane.avif" type="image/avif"><img src="assets/cards/plane.png" alt="" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:405;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/vzr-catalog.avif" type="image/avif"><img src="assets/cards/vzr-catalog.png" alt="Каталог туристического страхования с&nbsp;рекомендациями" loading="lazy" decoding="async"></picture></div><div class="show__item show__phone" style="--x:697;--y:32;--w:260;--h:536"><picture><source srcset="assets/cards/vzr-options.avif" type="image/avif"><img src="assets/cards/vzr-options.png" alt="Опции, которые чаще всего добавляют к&nbsp;страховке" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </div>
+    </a>
+  </nav>
+
+</main>
+<script src="js/analytics.js?v=2026-11-06a" defer></script>
+<script src="js/tg.js?v=2026-11-02h" defer></script>
+<script src="js/ui.js?v=2026-11-02g" defer></script>
+<script src="js/case.js?v=2026-11-02g" defer></script>
+<script src="js/cursor.js?v=2026-11-02g" defer></script>
+<script src="js/menu.js?v=2026-11-02g" defer></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+/* ============================================================
+   ВИТРИНА КЕЙСА (.show) — карточка кейса на главной и обложка кейса
+   Figma: «Новая главная» → case (10098:71951), «Новая обложка» (10098:72532).
+
+   Резиновая: карточка тянется в края окна, высота растёт вместе
+   с шириной (600 px при окне 1440) в пределах --show-min…--show-max.
+
+   Как устроена:
+   · Текст слева — фиксированной ширины (--zone), картинка его не трогает.
+   · Справа «сцена» (.show__stage) в координатах макета --sw × --sh:
+     айфоны и 3D-картинка стоят в ней процентами, как в .plate.
+     Сцена прижата к правому нижнему углу и масштабируется по высоте
+     карточки. Если ей тесно, левый край уходит под мягкую маску
+     (.show__media) — на текст картинка не заезжает никогда.
+
+   Брейкпоинты (почему именно такие — расчёт в README-home.md):
+   · ≥ 1200 — как в макете: широкий кейс + два в ряд.
+   · 900–1199 — каждый кейс на всю ширину (в ряд по два айфон
+     уже не влезал бы целиком).
+   · < 900 — мобильная карточка: текст, метрики сеткой 2×2, кнопка,
+     один айфон (3D-картинки нет).
+   ============================================================ */
+.show {
+  --show-h: clamp(var(--show-min), var(--show-fluid), var(--show-max));
+  position: relative;
+  display: block;
+  height: var(--show-h);
+  overflow: hidden;
+  isolation: isolate;
+  container-type: size;   /* cqw/cqh = размер карточки: по ним считается сдвиг сцены */
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  color: inherit;
+}
+
+/* --- Текст: название сверху, метрики снизу --- */
+.show__text {
+  position: absolute;
+  z-index: 2;
+  top: var(--space-32);
+  bottom: var(--space-32);
+  left: var(--space-32);
+  width: calc(var(--zone) * 1px - var(--space-32) - var(--space-16));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.show__title { max-width: 243px; }
+
+.show__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.show__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.show__label { color: var(--dark-60); }
+
+/* Кнопка «Посмотреть» — только в мобильной карточке */
+.show__btn { display: none; }
+
+/* --- Картинка справа ---
+   Сцене тесно → сначала уезжает вправо и режется краем карточки
+   (айфоны при этом остаются целыми, до края ≥ 16 px) — так на ноутбуках
+   13" нет размытия. Если и этого мало, остаток левого края уходит
+   под мягкую маску (планшеты). --pr — правый край крайнего айфона в сцене. */
+.show__media {
+  --k: calc(100cqh / var(--sh));                                     /* масштаб сцены */
+  --over: max(0px, var(--sw) * var(--k) - (100cqw - var(--zone) * 1px));   /* на сколько сцена шире места */
+  --shift: clamp(0px, var(--over), (var(--sw) - var(--pr, var(--sw))) * var(--k) - var(--space-16));
+  --fade: min(var(--space-32), (var(--over) - var(--shift)) * 4);    /* маска — только если ещё тесно */
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: calc(var(--zone) * 1px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade));
+          mask-image: linear-gradient(to right, transparent, #000 var(--fade));
+}
+
+.show__stage {
+  position: absolute;
+  right: calc(var(--shift) * -1);
+  bottom: 0;
+  height: calc(var(--sh) * var(--k));
+  aspect-ratio: var(--sw) / var(--sh);
+}
+
+/* Десктоп (ноутбуки 13" и шире): маски нет совсем. Если айфоны не влезают
+   даже со сдвигом, сцена чуть уменьшается, прижатая к низу карточки */
+@media (min-width: 1200px) {
+  .show__media {
+    --k: min(100cqh / var(--sh), (100cqw - var(--zone) * 1px - var(--space-16)) / var(--pr, var(--sw)));
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+}
+
+.show__item {
+  position: absolute;
+  left: calc(var(--x) / var(--sw) * 100%);
+  top: calc(var(--y) / var(--sh) * 100%);
+  width: calc(var(--w) / var(--sw) * 100%);
+  height: calc(var(--h) / var(--sh) * 100%);
+}
+
+.show__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 3D-картинка: кадр как в Figma — картинка больше рамки и сдвинута (--cl/--ct/--cw/--ch) */
+.show__art { overflow: hidden; }
+
+.show__art img {
+  position: absolute;
+  left: var(--cl, 0%);
+  top: var(--ct, 0%);
+  width: var(--cw, 100%);
+  height: var(--ch, 100%);
+  max-width: none;
+  object-fit: cover;
+}
+
+.show__art--flip img { transform: scaleX(-1); }
+
+.show__phone { z-index: 1; }
+
+.show picture { display: contents; }
+
+/* ============================================================
+   КУРСОР «ПОСМОТРЕТЬ» (Figma 10098:72526)
+   Над карточкой кейса вместо стрелки — точка и тёмная кнопка под ней.
+   Только мышь: на тачскрине и с клавиатуры его нет.
+   ============================================================ */
+@media (hover: hover) and (pointer: fine) {
+  a.show { cursor: none; }
+}
+
+.cursor-pill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.cursor-pill__in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  transform: translate(-50%, calc(var(--cursor-dot) / -2)) scale(.6);
+  transform-origin: 50% calc(var(--cursor-dot) / 2);
+  opacity: 0;
+  transition:
+    opacity var(--dur-fast) var(--ease),
+    transform var(--dur) var(--ease-menu);
+}
+
+.cursor-pill.is-on .cursor-pill__in {
+  opacity: 1;
+  transform: translate(-50%, calc(var(--cursor-dot) / -2)) scale(1);
+}
+
+.cursor-pill__dot {
+  width: var(--cursor-dot);
+  height: var(--cursor-dot);
+  border-radius: 50%;
+  background: var(--dark-100);
+}
+
+.cursor-pill__btn {
+  padding: var(--space-16) var(--space-20);
+  border-radius: var(--radius-pill);
+  background: var(--dark-100);
+  color: var(--light-100);
+  font-size: var(--fs-m);
+  line-height: var(--lh-m);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-pill__in { transition: opacity var(--dur-fast) linear; }
+}
+
+/* ============================================================
+   ТЕЛЕФОН И УЗКИЙ ПЛАНШЕТ (< 900): мобильная карточка
+   Figma «Пример как свёрстан моб кейс» (10098:73939):
+   поля 20, метрики 2×2, кнопка на всю ширину, айфон 242 по центру,
+   без 3D-картинки на фоне.
+   ============================================================ */
+@media (max-width: 899px) {
+  .show {
+    height: auto;
+    container-type: normal;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    padding: var(--space-20) var(--space-20) 0;
+  }
+
+  .show__text {
+    position: static;
+    width: auto;
+    gap: var(--space-24);
+  }
+
+  .show__title { max-width: none; }
+
+  .show__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-16);
+  }
+
+  /* Цифры на мобилке — Subtitle/L, полужирные (20 px): крупно и читаемо */
+  .show__value { font-size: var(--fs-sub-l); line-height: var(--lh-sub-l); font-weight: var(--fw-semibold); }
+  .show__label { font-size: var(--fs-xs); line-height: var(--lh-xs); }
+
+  .show__btn { display: flex; width: 100%; }
+
+  /* Нижняя часть карточки — от края до края: к ней привязана иллюстрация */
+  .show__media {
+    position: relative;
+    left: auto;
+    overflow: visible;
+    -webkit-mask-image: none;
+            mask-image: none;
+    margin-inline: calc(var(--space-20) * -1);
+    padding: 0 var(--space-20) var(--space-20);
+  }
+
+  /* Один айфон по центру, второй прячем */
+  .show__stage {
+    position: static;
+    width: min(242px, 72%);
+    height: auto;
+    right: auto;
+    margin-inline: auto;
+    aspect-ratio: auto;
+  }
+
+  .show__phone {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .show__phone img { height: auto; }
+  .show__phone ~ .show__phone { display: none; }
+
+  /* 3D-картинку за айфоном на телефоне и узком планшете не показываем —
+     только айфон. На десктопе (≥ 900) она остаётся */
+  .show__art { display: none; }
+}
